@@ -1,0 +1,50 @@
+# Quiet monochrome profile with a single warm accent, tuned to match the
+# rest of this setup (zsh prompt, tmux, nvim all share the same palette).
+
+font-family = "JetBrainsMono Nerd Font Mono"
+font-size = 14
+font-thicken = true
+font-thicken-strength = 64
+
+background = #161616
+foreground = #d7d7d7
+selection-background = #404040
+selection-foreground = #f2f2f2
+cursor-color = #d97757
+cursor-text = #161616
+
+# Muted ANSI palette: enough contrast for tools, without neon colors.
+palette = 0=#1c1c1c
+palette = 1=#b36a6a
+palette = 2=#7d9a72
+palette = 3=#b09a6a
+palette = 4=#7289a8
+palette = 5=#927b9d
+palette = 6=#6f9994
+palette = 7=#c7c7c7
+palette = 8=#666666
+palette = 9=#c77b7b
+palette = 10=#91aa86
+palette = 11=#c2ad7b
+palette = 12=#879db8
+palette = 13=#a38eac
+palette = 14=#82aaa5
+palette = 15=#eeeeee
+
+background-opacity = 0.92
+background-opacity-cells = true
+background-blur = true
+
+window-padding-x = 10
+window-padding-y = 8
+window-padding-balance = true
+macos-titlebar-style = transparent
+
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title
+copy-on-select = clipboard
+confirm-close-surface = false
