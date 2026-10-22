@@ -1,15 +1,27 @@
 #!/bin/bash
 
+# JankyBorders: highlights the focused window. Started by AeroSpace
+# (after-startup-command in aerospace.toml).
+#
+# Instead of a hard 1px outline we draw a soft glow: it fades out
+# instead of tracing an exact edge, so apps whose corner radius does not
+# match `style=round` no longer look misaligned.
+#
+# glow(0xAARRGGBB) — AA is the strength of the glow (ff = strongest).
+# width            — how far the glow spreads from the window edge.
+# Apply changes:    ~/.config/borders/bordersrc  (or alt-shift-; then esc)
+
 options=(
   style=round
-  # style=square
-  width=1.0
+  width=8.0
   hidpi=on
-  order=above
+  order=below # glow sits under the window, so app corners hide any radius mismatch
 
-  active_color=0xffe5784c # gruvbox
-  # active_color=0xff7DA5F9 # tokyonight
+  active_color="glow(0xb3e5784c)" # gruvbox orange, ~70% strength
   inactive_color=0x00000000
+
+  # Old look — thin solid outline:
+  # width=1.0 order=above active_color=0xffe5784c
 )
 
 borders "${options[@]}"
