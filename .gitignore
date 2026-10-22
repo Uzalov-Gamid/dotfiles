@@ -14,10 +14,6 @@
 !/karabiner/
 /karabiner/automatic_backups/
 
-# Disabled, kept for reference (see README)
-!/yabai/
-!/skhd/
-
 # Shells & prompts
 !/fish/
 /fish/fish_variables
