@@ -1,0 +1,15 @@
+#!/bin/bash
+
+options=(
+  style=round
+  # style=square
+  width=1.0
+  hidpi=on
+  order=above
+
+  active_color=0xffe5784c # gruvbox
+  # active_color=0xff7DA5F9 # tokyonight
+  inactive_color=0x00000000
+)
+
+borders "${options[@]}"

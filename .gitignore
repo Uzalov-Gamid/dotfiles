@@ -1,2 +1,52 @@
+# This repo is ~/.config itself. Everything is ignored by default and
+# configs are opted in below, so tokens, caches and app state
+# (gh, atuin keys, ticktick-cli, colima VM disks, raycast, ...) never
+# end up on GitHub by accident.
+/*
+!/.gitignore
+!/README.md
+!/docs/
+
+# Window management & menu bar
+!/aerospace/
+!/borders/
+!/sketchybar/
+!/karabiner/
+/karabiner/automatic_backups/
+
+# Disabled, kept for reference (see README)
+!/yabai/
+!/skhd/
+
+# Shells & prompts
+!/fish/
+/fish/fish_variables
+/fish/functions/
+/fish/completions/
+/fish/conf.d/
+!/zsh/
+/zsh/.zcompdump*
+/zsh/.zsh_sessions/
+!/starship.toml
+
+# Terminal & CLI tools
+!/ghostty/
+!/tmux/
+!/nvim/
+!/git/
+!/atuin/
+/atuin/*
+!/atuin/config.toml
+!/btop/
+!/fastfetch/
+!/htop/
+!/zed/
+/zed/*
+!/zed/settings.json
+!/colima/
+/colima/*
+!/colima/default/
+/colima/default/*
+!/colima/default/colima.yaml
+
 .DS_Store
-*.swp

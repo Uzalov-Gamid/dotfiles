@@ -1,0 +1,12 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+*whatthefuck*
+db_private.lua
+.DS_Store
+ui.lua

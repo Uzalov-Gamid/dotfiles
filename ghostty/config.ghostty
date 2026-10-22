@@ -1,0 +1,68 @@
+theme = Gruvbox Dark
+# theme = Tokyonight Moon
+cursor-color = #f4dbd6
+cursor-text = #24273a
+cursor-style = "block"
+cursor-style-blink = false
+
+# background-blur = true
+# background-opacity = 0.7
+# background = #202020
+
+# ( ) i $ <=
+
+window-padding-balance = true
+window-padding-x = 14
+window-padding-y = 14
+# window-padding-color = extend
+
+# macbook
+font-size = 13.0
+font-family = "0xProto Nerd Font Propo"
+adjust-cell-height = 5
+adjust-cell-width = 1
+font-feature = cv31
+font-feature = cv06
+font-feature = ss04
+font-feature = -calt
+
+# font-family = "Iosevka Fixed"
+# font-size = 13.0
+# adjust-cell-height = 8
+# adjust-cell-width = 3
+# font-feature = cv31
+# font-feature = cv06
+# font-feature = ss04
+# font-feature = -calt
+
+# font-family = "FiraCode Nerd Font Propo" 
+# font-size = 13.0
+# adjust-cell-height = 9
+# adjust-cell-width = 1
+# font-feature = cv31
+# font-feature = cv06
+# font-feature = ss04
+# font-feature = -calt
+
+font-style = medium
+
+
+mouse-hide-while-typing = true
+macos-option-as-alt = true
+auto-update = check
+macos-icon = retro
+macos-icon-frame = plastic
+macos-window-buttons = hidden
+macos-titlebar-style = hidden
+
+keybind = global:cmd+f20=toggle_quick_terminal
+quick-terminal-position = center
+
+# custom-shader = shaders/cursor_warp.glsl
+# custom-shader = shaders/cursor_tail.glsl
+# custom-shader = shaders/bettercrt.glsl
+# custom-shader = shaders/bloom.glsl
+
+keybind = global:alt+1=toggle_quick_terminal
+quick-terminal-position = center
+quick-terminal-size = 40%, 45%

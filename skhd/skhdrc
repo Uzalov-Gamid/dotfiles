@@ -1,0 +1,78 @@
+# --- NAV & WINDOW FOCUS ---
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+alt - tab : yabai -m window --focus recent
+
+# --- MOVE WINDOWS ---
+shift + alt - h : yabai -m window --warp west
+shift + alt - j : yabai -m window --warp south
+shift + alt - k : yabai -m window --warp north
+shift + alt - l : yabai -m window --warp east
+
+# --- RESIZE ---
+ctrl + alt - h : yabai -m window --resize left:-40:0 || yabai -m window --resize right:-40:0
+ctrl + alt - j : yabai -m window --resize bottom:0:40 || yabai -m window --resize top:0:40
+ctrl + alt - k : yabai -m window --resize top:0:-40 || yabai -m window --resize bottom:0:-40
+ctrl + alt - l : yabai -m window --resize right:40:0 || yabai -m window --resize left:40:0
+
+# --- NAMED SPACES FOCUS (AeroSpace style) ---
+alt - m : yabai -m space --focus main
+alt - s : yabai -m space --focus sec
+alt - o : yabai -m space --focus brwse
+alt - n : yabai -m space --focus note
+alt - t : yabai -m space --focus chat
+alt - i : yabai -m space --focus ai
+
+# --- MOVE WINDOW TO NAMED SPACE ---
+shift + alt - g : yabai -m window --space main 
+shift + alt - s : yabai -m window --space sec  
+shift + alt - o : yabai -m window --space brwse
+shift + alt - n : yabai -m window --space note 
+shift + alt - t : yabai -m window --space chat 
+shift + alt - i : yabai -m window --space ai
+
+
+# --- SPACE NAVIGATION ---
+# Ctrl + Alt + .  -> Next Space
+ctrl + alt - 0x2F : yabai -m space --focus next || yabai -m space --focus first
+# Ctrl + Alt + ,  -> Previous Space
+ctrl + alt - 0x2B : yabai -m space --focus prev || yabai -m space --focus last
+
+# --- MOVE WINDOW TO NEXT/PREV SPACE ---
+# Ctrl + Shift + Alt + .  -> Move Window -> Next Space
+shift + ctrl + alt - 0x2F : yabai -m window --space next && yabai -m space --focus next
+# Ctrl + Shift + Alt + ,  -> Move Window -> Previous Space
+shift + ctrl + alt - 0x2B : yabai -m window --space prev && yabai -m space --focus prev
+
+# --- CREATE / DELETE SPACE ---
+# Ctrl + Shift + Alt + =  -> Create Space
+ctrl + shift + alt - 0x18 : yabai -m space --create
+# Ctrl + Shift + Alt + -  -> Delete Current Space
+ctrl + shift + alt - 0x1B : yabai -m space --destroy
+
+# --- MOVE SPACE TO MONITOR (AeroSpace move-workspace-to-monitor) ---
+# Переносит текущий сфокусированный спейс целиком на следующий/предыдущий монитор
+shift + alt - tab : yabai -m space --display next || yabai -m space --display first
+
+# --- STACK & LAYOUT CONTROLS ---
+# Переключение между BSP и Stack
+alt - 0x2C : yabai -m space --layout "$(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')"
+
+# Циклическая навигация вперед/назад по стаку (без тупиков)
+alt - 0x1E : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+alt - 0x21 : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+
+# Циклический с왑 (перемещение) окон внутри стака
+shift + alt - 0x1E : yabai -m window --swap stack.next || yabai -m window --swap stack.first
+shift + alt - 0x21 : yabai -m window --swap stack.prev || yabai -m window --swap stack.last
+
+# Float / Layout
+shift + alt - b : yabai -m space --balance
+shift + alt - f : yabai -m window --toggle zoom-fullscreen
+shift + alt - c : yabai -m window --grid 10:10:1:1:8:8
+shift + alt - f : yabai -m window --toggle float
+
+# Reload configs
+shift + alt - r : ~/.config/yabai/restart.sh
