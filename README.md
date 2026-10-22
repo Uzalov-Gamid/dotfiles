@@ -222,7 +222,11 @@ sketchybar/
 
 Стрелку заменяет [MaCursor](https://github.com/writronic/MaCursor) (подписан и
 нотаризован Apple, поддерживает macOS 26). Тема — **Bibata Modern Ice**
-(белая, скруглённая), файл лежит в репо: [`cursor/BibataModernIce.cursor`](cursor/BibataModernIce.cursor).
+(белая, скруглённая), уменьшенная до 0.7 — 22 pt вместо 32, ближе к родной стрелке macOS.
+Файл в репо: [`cursor/BibataModernIceSmall.cursor`](cursor/BibataModernIceSmall.cursor).
+
+- Другой размер: `python3 ~/.config/cursor/resize.py ~/.config/cursor/BibataModernIceSmall.cursor 0.9`
+  (0.9 — меньше, 1.2 — больше) → откроется копия рядом, нажать **Apply**.
 
 - Сменить тему: открыть MaCursor → выбрать тему → **Apply**. Ещё 80+ тем — в
   [галерее](https://github.com/writronic/MaCursor/blob/main/themes/README.md);
@@ -231,7 +235,7 @@ sketchybar/
 - Чтобы тема не слетала после перезагрузки: **MaCursor → Settings → General →
   Helper Tool → Install** (маленький помощник в автозагрузке).
 - На новом маке: `install.sh` ставит MaCursor через Brewfile, дальше — открыть
-  `cursor/BibataModernIce.cursor` и нажать **Apply**.
+  `cursor/BibataModernIceSmall.cursor` и нажать **Apply**.
 
 ## Karabiner-Elements — клавиатура
 

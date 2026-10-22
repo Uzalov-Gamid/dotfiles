@@ -23,7 +23,7 @@ cask "font-sketchybar-app-font"  # app icons in the bar
 cask "font-sf-pro"               # bar text + SF Symbols glyphs
 cask "font-sf-mono"
 cask "sf-symbols"                # look up icon codes for the bar
-cask "macursor"                  # custom mouse cursor theme (cursor/*.cursor)
+cask "macursor"                  # custom mouse cursor theme (cursor/)
 
 # ── Terminal & shell ──────────────────────────────────────────────────
 cask "ghostty"

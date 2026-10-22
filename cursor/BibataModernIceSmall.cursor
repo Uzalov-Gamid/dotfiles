@@ -11,15 +11,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>6.9000000000000004</real>
+			<real>4.83</real>
 			<key>HotSpotY</key>
-			<real>2.1000000000000001</real>
+			<real>1.47</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -664,15 +664,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>6.9000000000000004</real>
+			<real>4.83</real>
 			<key>HotSpotY</key>
-			<real>2.1000000000000001</real>
+			<real>1.47</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -1317,15 +1317,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>7.0999999999999996</real>
+			<real>4.97</real>
 			<key>HotSpotY</key>
-			<real>2.1000000000000001</real>
+			<real>1.47</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -1970,15 +1970,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>6.9000000000000004</real>
+			<real>4.83</real>
 			<key>HotSpotY</key>
-			<real>2.1000000000000001</real>
+			<real>1.47</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -2623,15 +2623,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>6.9000000000000004</real>
+			<real>4.83</real>
 			<key>HotSpotY</key>
-			<real>2.1000000000000001</real>
+			<real>1.47</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -3276,15 +3276,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -3929,15 +3929,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -4582,15 +4582,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -5235,15 +5235,15 @@
 			<key>FrameCount</key>
 			<integer>24</integer>
 			<key>FrameDuration</key>
-			<real>0.089999999999999997</real>
+			<real>0.09</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -20162,15 +20162,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>8.1999999999999993</real>
+			<real>5.74</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -20815,15 +20815,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>18</real>
+			<real>12.6</real>
 			<key>HotSpotY</key>
-			<real>9.9000000000000004</real>
+			<real>6.93</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -21468,15 +21468,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>14.199999999999999</real>
+			<real>9.94</real>
 			<key>HotSpotY</key>
-			<real>2.2000000000000002</real>
+			<real>1.54</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -22121,15 +22121,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>2.6000000000000001</real>
+			<real>1.82</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -22774,15 +22774,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>29.100000000000001</real>
+			<real>20.37</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -23427,15 +23427,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -24080,15 +24080,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>14.199999999999999</real>
+			<real>9.94</real>
 			<key>HotSpotY</key>
-			<real>2.2000000000000002</real>
+			<real>1.54</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -24733,15 +24733,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>2.8999999999999999</real>
+			<real>2.03</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -25386,15 +25386,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16.100000000000001</real>
+			<real>11.27</real>
 			<key>HotSpotY</key>
-			<real>29.199999999999999</real>
+			<real>20.44</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -26039,15 +26039,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -26692,15 +26692,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>7.0999999999999996</real>
+			<real>4.97</real>
 			<key>HotSpotY</key>
-			<real>2.1000000000000001</real>
+			<real>1.47</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -27345,15 +27345,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -27998,15 +27998,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -28651,15 +28651,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>29.100000000000001</real>
+			<real>20.37</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -29304,15 +29304,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -29957,15 +29957,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>28.600000000000001</real>
+			<real>20.02</real>
 			<key>HotSpotY</key>
-			<real>3</real>
+			<real>2.1</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -30610,15 +30610,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>6.9000000000000004</real>
+			<real>4.83</real>
 			<key>HotSpotY</key>
-			<real>2.1000000000000001</real>
+			<real>1.47</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -31263,15 +31263,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -31916,15 +31916,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>2.8999999999999999</real>
+			<real>2.03</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -32569,15 +32569,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -33222,15 +33222,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>3.6000000000000001</real>
+			<real>2.52</real>
 			<key>HotSpotY</key>
-			<real>3</real>
+			<real>2.1</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -33875,15 +33875,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -34528,15 +34528,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>28.600000000000001</real>
+			<real>20.02</real>
 			<key>HotSpotY</key>
-			<real>29</real>
+			<real>20.3</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -35181,15 +35181,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16.100000000000001</real>
+			<real>11.27</real>
 			<key>HotSpotY</key>
-			<real>29.199999999999999</real>
+			<real>20.44</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -35834,15 +35834,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>3.2000000000000002</real>
+			<real>2.24</real>
 			<key>HotSpotY</key>
-			<real>29</real>
+			<real>20.3</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -36487,15 +36487,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>2.6000000000000001</real>
+			<real>1.82</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -37140,15 +37140,15 @@
 			<key>FrameCount</key>
 			<integer>24</integer>
 			<key>FrameDuration</key>
-			<real>0.089999999999999997</real>
+			<real>0.09</real>
 			<key>HotSpotX</key>
-			<real>6.9000000000000004</real>
+			<real>4.83</real>
 			<key>HotSpotY</key>
-			<real>2.1000000000000001</real>
+			<real>1.47</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -52067,15 +52067,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>5.2000000000000002</real>
+			<real>3.64</real>
 			<key>HotSpotY</key>
-			<real>10.800000000000001</real>
+			<real>7.56</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -52720,15 +52720,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -53373,15 +53373,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>6.9000000000000004</real>
+			<real>4.83</real>
 			<key>HotSpotY</key>
-			<real>2.1000000000000001</real>
+			<real>1.47</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -54026,15 +54026,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -54679,15 +54679,15 @@
 			<key>FrameCount</key>
 			<integer>1</integer>
 			<key>FrameDuration</key>
-			<real>1</real>
+			<real>1.0</real>
 			<key>HotSpotX</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>HotSpotY</key>
-			<real>16</real>
+			<real>11.2</real>
 			<key>PointsHigh</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>PointsWide</key>
-			<real>32</real>
+			<real>22.4</real>
 			<key>Representations</key>
 			<array>
 				<data>
@@ -55331,12 +55331,12 @@
 	<key>HiDPI</key>
 	<true/>
 	<key>Identifier</key>
-	<string>BibataModernIce</string>
+	<string>BibataModernIceSmall</string>
 	<key>ThemeName</key>
-	<string>Bibata Modern Ice</string>
+	<string>Bibata Modern Ice Small</string>
 	<key>ThemeVersion</key>
-	<real>1</real>
+	<real>1.0</real>
 	<key>UUID</key>
-	<string>F2A40950-AC4F-4106-88C2-E6E1F4338E68</string>
+	<string>5C5ECD54-8CA3-459D-A623-51E62BB98723</string>
 </dict>
 </plist>
