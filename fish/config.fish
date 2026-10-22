@@ -64,10 +64,6 @@ abbr -a dops "docker ps"
 abbr -a doco "docker compose"
 abbr -a doe "docker exec"
 
-abbr -a gr "go run"
-abbr -a gm "go mod"
-abbr -a gmt "go mod tidy"
-
 function cheat
     curl -s "https://cheat.sh/$argv"
 end
@@ -96,7 +92,6 @@ end
 # alias ls lsd
 alias ls "lsd -lah --group-dirs first"
 alias n nvim
-alias cal "~/go/bin/calendar"
 abbr -a yz yazi
 
 bind ctrl-\\ 'status test-terminal-feature scroll-content-up && commandline -f scrollback-push; commandline -f clear-screen'

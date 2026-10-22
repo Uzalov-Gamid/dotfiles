@@ -5,6 +5,8 @@
 /*
 !/.gitignore
 !/README.md
+!/Brewfile
+!/install.sh
 !/docs/
 
 # Window management & menu bar
@@ -35,10 +37,6 @@
 !/atuin/config.toml
 !/btop/
 !/fastfetch/
-!/htop/
-!/zed/
-/zed/*
-!/zed/settings.json
 !/colima/
 /colima/*
 !/colima/default/
