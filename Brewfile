@@ -10,6 +10,7 @@
 
 tap "nikitabobko/tap"     # AeroSpace
 tap "felixkratz/formulae" # SketchyBar, JankyBorders
+tap "writronic/tap"       # MaCursor
 
 # ── Window manager, menu bar, keyboard ────────────────────────────────
 cask "aerospace"                 # tiling window manager
@@ -22,6 +23,7 @@ cask "font-sketchybar-app-font"  # app icons in the bar
 cask "font-sf-pro"               # bar text + SF Symbols glyphs
 cask "font-sf-mono"
 cask "sf-symbols"                # look up icon codes for the bar
+cask "macursor"                  # custom mouse cursor theme (cursor/*.cursor)
 
 # ── Terminal & shell ──────────────────────────────────────────────────
 cask "ghostty"
