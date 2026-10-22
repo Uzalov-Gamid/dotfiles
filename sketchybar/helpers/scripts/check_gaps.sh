@@ -26,6 +26,7 @@ rects=$(for i in $items; do
     | select(.geometry.position | startswith("popup") | not)
     | select(.type == "bracket" or .geometry.background.drawing == "on")
     | .bounding_rects["display-1"] // empty
+    | select(.origin[0] >= 0)  # hidden brackets are parked at -9999
     | "\(.origin[0]) \(.size[0]) \($i)"'
 done | sort -n)
 
