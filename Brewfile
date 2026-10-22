@@ -41,7 +41,6 @@ brew "ghostscript"               #   imagemagick: PDF/EPS
 brew "fastfetch"                 # `ff`
 brew "btop"
 brew "tree"
-brew "curl"
 brew "wget"
 brew "starship"                  # prompt for zsh (fish uses Tide)
 brew "zsh-autosuggestions"

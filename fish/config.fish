@@ -1,10 +1,11 @@
+# Homebrew first in PATH, so brew's git/curl/python3 win over /usr/bin
+/opt/homebrew/bin/brew shellenv fish | source
+
 if status is-interactive
     fish_vi_key_bindings
 end
 
 zoxide init fish | source
-
-# thefuck --alias | source
 
 fzf --fish | source
 

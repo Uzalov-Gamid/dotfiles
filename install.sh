@@ -32,7 +32,11 @@ brew bundle --file="$CONFIG/Brewfile" || log "Some Brewfile items failed — re-
 log "Installing npm tools..."
 npm install -g @ticktick/ticktick-cli @sqltools/formatter
 
-# 5. SbarLua — the Lua module SketchyBar's config is written with
+# 5. Personal Python libraries, into Homebrew's python3 (user site)
+log "Installing Python libraries..."
+/opt/homebrew/bin/python3 -m pip install --user --break-system-packages -q -r "$CONFIG/python/requirements.txt"
+
+# 6. SbarLua — the Lua module SketchyBar's config is written with
 if [ ! -f "$HOME/.local/share/sketchybar_lua/sketchybar.so" ]; then
   log "Building SbarLua..."
   tmp=$(mktemp -d)
@@ -41,12 +45,12 @@ if [ ! -f "$HOME/.local/share/sketchybar_lua/sketchybar.so" ]; then
   rm -rf "$tmp"
 fi
 
-# 6. zsh reads its config from ~/.config/zsh
+# 7. zsh reads its config from ~/.config/zsh
 if [ ! -f "$HOME/.zshenv" ]; then
   echo 'export ZDOTDIR="$HOME/.config/zsh"' >"$HOME/.zshenv"
 fi
 
-# 7. fish as the login shell + its plugins (Tide prompt)
+# 8. fish as the login shell + its plugins (Tide prompt)
 FISH=/opt/homebrew/bin/fish
 if ! grep -qx "$FISH" /etc/shells; then
   log "Allowing fish as a login shell (asks for your password)..."
@@ -58,13 +62,13 @@ fi
 log "Installing fish plugins..."
 "$FISH" -c 'type -q fisher; or begin; curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; end; fisher update'
 
-# 8. tmux plugins
+# 9. tmux plugins
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone --depth 1 https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
 "$HOME/.tmux/plugins/tpm/bin/install_plugins" >/dev/null || true
 
-# 9. Start the desktop: bar, then AeroSpace (it starts borders itself)
+# 10. Start the desktop: bar, then AeroSpace (it starts borders itself)
 log "Starting SketchyBar and AeroSpace..."
 brew services start sketchybar
 open -a AeroSpace

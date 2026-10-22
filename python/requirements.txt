@@ -1,0 +1,9 @@
+# Personal Python libraries, installed into Homebrew's python3 user site
+# (~/Library/Python/3.x). numpy, pillow, lxml etc. come in as dependencies.
+#
+#   python3 -m pip install --user --break-system-packages -r ~/.config/python/requirements.txt
+#
+# --break-system-packages is needed because Homebrew marks its Python as
+# "externally managed"; --user keeps these out of Homebrew's own folders.
+matplotlib
+python-docx

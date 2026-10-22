@@ -244,6 +244,8 @@ sketchybar/
 
 Основная оболочка. Плагины ставит [fisher](https://github.com/jorgebucaran/fisher) по списку `fish/fish_plugins` (сейчас — промпт Tide; его настройки в `fish/tide.config.fish`).
 
+- **Homebrew первым в PATH** (`brew shellenv` в начале конфига): `git`, `python3`, `pip3` — версии из brew, а не системные из `/usr/bin`.
+- Python-библиотеки (matplotlib, python-docx + зависимости) стоят в brew-Python, в `~/Library/Python/3.14`; список — `python/requirements.txt`.
 - **vi-режим** ввода (`Esc` → normal, `y` в visual копирует в буфер обмена).
 - `Ctrl-R` — история через **atuin** (Enter сразу выполняет команду).
 - `cd` = **zoxide** (`cd proj` прыгает в часто посещаемую папку с «proj» в имени).
@@ -314,7 +316,8 @@ git clone https://github.com/Uzalov-Gamid/dotfiles.git ~/.config
 ```
 
 Скрипт: Command Line Tools → Homebrew → `brew bundle` (всё из Brewfile, включая
-App Store через `mas`) → npm-утилиты (TickTick CLI, SQL-форматтер) → SbarLua →
+App Store через `mas`) → npm-утилиты (TickTick CLI, SQL-форматтер) →
+Python-библиотеки из [`python/requirements.txt`](python/requirements.txt) → SbarLua →
 `~/.zshenv` → fish как оболочка входа + плагины → плагины tmux → запуск
 SketchyBar и AeroSpace. Можно запускать повторно — сделанное пропускается.
 После — дать AeroSpace и Karabiner доступ к «Универсальному доступу», когда
