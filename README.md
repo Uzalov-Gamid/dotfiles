@@ -44,9 +44,8 @@
 | `git/` | git + [delta](https://github.com/dandavison/delta) | Имя/почта, красивые диффы, алиасы | ✅ работает |
 | `atuin/` | [atuin](https://atuin.sh) | История команд с поиском (`Ctrl-R`) | ✅ работает |
 | `zsh/` | zsh + Starship (`starship.toml`) | Запасная оболочка (её используют скрипты и Claude Code) | ✅ работает |
-| `btop/`, `htop/` | btop / htop | Мониторы процессов | ✅ |
+| `btop/` | btop | Монитор процессов | ✅ |
 | `fastfetch/` | fastfetch | Инфо о системе (`ff`) | ✅ |
-| `zed/` | Zed | Редактор: vim-режим, тема | ✅ |
 | `colima/` | [Colima](https://github.com/abiosoft/colima) | Docker без Docker Desktop: VM 4 CPU / 6 GB / 40 GB | ✅ |
 
 ---
@@ -252,7 +251,7 @@ sketchybar/
 - `rm` **кладёт файлы в Корзину** (`/usr/bin/trash`) — флаги `-r/-f` можно писать, они игнорируются. Удалить насовсем: `command rm`.
 - `cheat <команда>` — шпаргалка с cheat.sh. `ip` — твой внешний IP.
 - Git: `gs` status, `ga` add, `gcm` commit -m, `gp` push, `gpl` pull, `gl` граф, `gd` diff, `grv` remotes …
-- Go: `gr` go run, `gm` go mod, `gmt` go mod tidy. Docker: `dops`, `doco`, `doe`.
+- Docker: `dops`, `doco`, `doe`.
 - Конфиги: `fishconf`, `asconf` (AeroSpace), `skconf` (SketchyBar), `bordersconf`, `gconf` (Ghostty), `tmuxconf`, `nvimconf`, `karaconf`, `asrc` — перечитать fish.
 - School 21: `dohelp21` — справка по Docker-контейнеру школы (`buildcont21`, `docreate21`, `doon21`, `do21`, `dooff21`).
 - `Ctrl-\` — очистить экран, сохранив прокрутку.
@@ -302,30 +301,34 @@ yabai удалён полностью (`brew uninstall`, сервис автоз
 
 ---
 
-## Восстановить на новом Mac
+## Установка на новый Mac
+
+Всё, что нужно этой настройке — приложения, утилиты, шрифты — перечислено в
+одном файле [`Brewfile`](Brewfile) (по группам, с комментариями, зачем каждая
+вещь). Остальные шаги, которые Homebrew сделать не может, делает
+[`install.sh`](install.sh):
 
 ```sh
-# 1. программы
-brew install fish tmux neovim git git-delta lsd zoxide fzf atuin yazi lazygit \
-  fastfetch btop htop colima lua switchaudio-osx nowplaying-cli jq
-brew install --cask aerospace ghostty karabiner-elements font-sketchybar-app-font
-brew tap FelixKratz/formulae && brew install sketchybar borders
-# SbarLua (Lua-модуль для SketchyBar):
-(git clone https://github.com/FelixKratz/SbarLua.git /tmp/SbarLua && cd /tmp/SbarLua && make install)
-
-# 2. конфиги
-mv ~/.config ~/.config.bak 2>/dev/null
 git clone https://github.com/Uzalov-Gamid/dotfiles.git ~/.config
-echo 'export ZDOTDIR="$HOME/.config/zsh"' > ~/.zshenv
-
-# 3. запуск
-brew services start sketchybar
-chsh -s /opt/homebrew/bin/fish   # (сначала добавить путь в /etc/shells)
-fish -c 'fisher update'          # поставит Tide
-open -a AeroSpace
+~/.config/install.sh
 ```
 
-Шрифты: SF Pro (Apple), 0xProto Nerd Font (`brew install --cask font-0xproto-nerd-font`).
+Скрипт: Command Line Tools → Homebrew → `brew bundle` (всё из Brewfile, включая
+App Store через `mas`) → npm-утилиты (TickTick CLI, SQL-форматтер) → SbarLua →
+`~/.zshenv` → fish как оболочка входа + плагины → плагины tmux → запуск
+SketchyBar и AeroSpace. Можно запускать повторно — сделанное пропускается.
+После — дать AeroSpace и Karabiner доступ к «Универсальному доступу», когда
+macOS спросит. Вручную: Jazz (SberJazz) и My Words — их нет ни в brew, ни в App Store.
+
+### Держать систему в порядке
+
+| Команда | Что делает |
+|---|---|
+| `brew bundle --file=~/.config/Brewfile` | Доставить недостающее / обновить |
+| `brew bundle check --file=~/.config/Brewfile --verbose` | Чего не хватает |
+| `brew bundle cleanup --file=~/.config/Brewfile` | Что установлено, но **нет** в Brewfile (кандидаты на удаление; `--force` — удалить) |
+
+Поставил что-то новое и хочешь оставить — допиши строку в `Brewfile` и закоммить.
 
 ## История
 
