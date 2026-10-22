@@ -12,7 +12,7 @@ local capsule = require("helpers.capsule")
 -- when Music is closed or stopped.
 --
 -- Covers are cut from the track's artwork once per album into
--- ~/.cache/sketchybar (a 36px one for the bar, a 128px one for the card).
+-- ~/.cache/sketchybar (a 36px one for the bar, a 112px one for the card).
 
 local scripts = "$CONFIG_DIR/helpers/scripts/"
 local cache = os.getenv("HOME") .. "/.cache/sketchybar"
@@ -23,22 +23,51 @@ local cover_card_pt = 56
 
 sbar.add("event", "music_change", "com.apple.Music.playerInfo")
 
-local music = capsule.item("widgets.music", {
+--------------------------------------------------
+-- BAR: [ cover  title ]
+--------------------------------------------------
+-- The cover is its own item: SketchyBar ignores an icon's paddings once
+-- the icon shows an image, so the image could not be inset from the
+-- capsule edge. Items inside a bracket keep their paddings, and the
+-- bracket draws the capsule around both.
+
+-- gap to the spaces block (outside the capsule, so not in the bracket)
+local spacer = sbar.add("item", "widgets.music.spacer", {
 	position = "left",
 	drawing = false,
-	icon = capsule.icon(icons.music, colors.magenta, {
-		width = cover_bar_pt,
-		background = {
-			drawing = false,
-			image = { corner_radius = 4 },
-		},
-	}),
+	width = capsule.gap,
+	icon = { drawing = false },
+	label = { drawing = false },
+})
+
+local cover = sbar.add("item", "widgets.music.cover", {
+	position = "left",
+	drawing = false,
+	-- a fixed width counts from the item's start, paddings included:
+	-- [7pt inset][18pt cover][6pt gap to the title]
+	width = (capsule.inner - 2) + cover_bar_pt + capsule.icon_gap,
+	padding_left = capsule.inner - 2,
+	padding_right = 0,
+	-- shown instead of the image when a track has no artwork
+	icon = capsule.icon(icons.music, colors.magenta, { padding_left = 0, padding_right = 0 }),
+	label = { drawing = false },
+	background = {
+		drawing = false,
+		image = { corner_radius = 4, scale = 0.5 },
+	},
+})
+
+local music = sbar.add("item", "widgets.music", {
+	position = "left",
+	drawing = false,
+	icon = { drawing = false },
 	label = capsule.label("", {
 		max_chars = settings.widgets.music.max_chars,
 		scroll_duration = 150,
+		padding_left = 0,
 	}),
 	scroll_texts = settings.scroll_texts,
-	padding_left = capsule.gap,
+	padding_left = 0,
 	padding_right = 0,
 	popup = (function()
 		local popup = {}
@@ -54,6 +83,14 @@ local music = capsule.item("widgets.music", {
 	updates = true,
 })
 
+capsule.bracket("widgets.music.capsule", { "widgets.music.cover", "widgets.music" })
+
+local function set_visible(visible)
+	for _, item in ipairs({ spacer, cover, music }) do
+		item:set({ drawing = visible })
+	end
+end
+
 --------------------------------------------------
 -- CARD (popup)
 --------------------------------------------------
@@ -67,7 +104,7 @@ local card_cover = sbar.add("item", "widgets.music.card.cover", {
 	label = { drawing = false },
 	background = {
 		drawing = false,
-		image = { corner_radius = 8 },
+		image = { corner_radius = 8, scale = 0.5 },
 	},
 	padding_left = 10,
 	padding_right = 4,
@@ -165,19 +202,17 @@ echo ok
 
 	sbar.exec(cmd, function(out)
 		local has_cover = (out or ""):match("ok") ~= nil
-		music:set({
-			icon = {
-				string = has_cover and "" or icons.music,
-				background = {
-					drawing = has_cover,
-					image = { string = has_cover and (base .. "_bar.png") or "", scale = 0.5 },
-				},
+		cover:set({
+			icon = { drawing = not has_cover },
+			background = {
+				drawing = has_cover,
+				image = { string = has_cover and (base .. "_bar.png") or "" },
 			},
 		})
 		card_cover:set({
 			background = {
 				drawing = has_cover,
-				image = { string = has_cover and (base .. "_card.png") or "", scale = 0.5 },
+				image = { string = has_cover and (base .. "_card.png") or "" },
 			},
 		})
 	end)
@@ -188,18 +223,19 @@ local function update()
 		local state, title, artist, album = (out or ""):match("^([^|]*)|([^|]*)|([^|]*)|([^\r\n]*)")
 
 		if state ~= "playing" and state ~= "paused" then
-			music:set({ drawing = false, popup = { drawing = false } })
+			set_visible(false)
+			music:set({ popup = { drawing = false } })
 			return
 		end
 
 		local playing = state == "playing"
 		music:set({
-			drawing = true,
 			label = {
 				string = title,
 				color = playing and colors.white or colors.grey,
 			},
 		})
+		set_visible(true)
 
 		local subtitle = artist
 		if album ~= "" then
@@ -215,8 +251,17 @@ end
 
 music:subscribe({ "music_change", "forced", "system_woke" }, update)
 
-capsule.attach_popup(music, nil, function()
+local popup = capsule.attach_popup(music, nil, function()
 	sbar.exec("osascript -e 'tell application \"Music\" to playpause'")
+end)
+
+-- the cover is part of the same capsule, so clicks on it act the same
+cover:subscribe("mouse.clicked", function(env)
+	if env.BUTTON == "left" then
+		popup.toggle()
+	else
+		sbar.exec("osascript -e 'tell application \"Music\" to playpause'")
+	end
 end)
 
 update()

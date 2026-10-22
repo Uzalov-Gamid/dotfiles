@@ -17,9 +17,14 @@ options=(
   hidpi=on
   order=below # glow sits under the window, so app corners hide any radius mismatch
 
-  active_color="glow(0xb3e5784c)" # gruvbox orange, ~70% strength
+  # Same aqua-blue the bar uses for everything "active" (focused space,
+  # focused app, widget icons), at ~70% strength.
+  active_color="glow(0xb37daea3)"
   inactive_color=0x00000000
 
+  # Other colours from the same Gruvbox palette:
+  #   glow(0xb3e5784c) orange (previous)   glow(0xb3d3869b) pink
+  #   glow(0xb3a9b665) green               glow(0x80d4be98) soft cream
   # Old look — thin solid outline:
   # width=1.0 order=above active_color=0xffe5784c
 )

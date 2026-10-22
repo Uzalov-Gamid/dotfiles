@@ -5,7 +5,7 @@ local capsule = require("helpers.capsule")
 -- Speaker glyph follows the volume level; grey when muted / at 0.
 
 local volume = capsule.item("widgets.volume", {
-	icon = capsule.icon(icons.volume._100, colors.blue, { width = 27, align = "left" }),
+	icon = capsule.icon(icons.volume._100, colors.blue),
 	label = capsule.label("??%"),
 })
 

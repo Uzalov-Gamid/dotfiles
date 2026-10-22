@@ -14,6 +14,7 @@ local settings = require("settings")
 
 local inner = settings.paddings.paddings - 1 -- capsule edge -> content
 local gap = settings.paddings.container_paddings -- space between capsules
+local icon_gap = 6 -- icon -> value inside a capsule
 
 local capsule = {}
 
@@ -32,7 +33,7 @@ function capsule.icon(glyph, color, extra)
 		color = color or colors.blue,
 		font = settings.icon_font,
 		padding_left = inner,
-		padding_right = 5,
+		padding_right = icon_gap,
 		align = "center",
 	}
 	for k, v in pairs(extra or {}) do
@@ -108,9 +109,15 @@ function capsule.attach_popup(item, on_open, on_right_click)
 		set_open(false)
 	end)
 
-	return function()
-		return is_open
-	end
+	return {
+		is_open = function()
+			return is_open
+		end,
+		-- for other items that should open the same popup
+		toggle = function()
+			set_open(not is_open)
+		end,
+	}
 end
 
 -- A "key   value" row inside a popup: key grey on the left, value white
@@ -142,6 +149,7 @@ function capsule.popup_row(name, parent, key, extra)
 end
 
 capsule.gap = gap
+capsule.icon_gap = icon_gap
 capsule.inner = inner
 
 return capsule

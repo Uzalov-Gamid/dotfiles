@@ -12,7 +12,14 @@ local capsule = require("helpers.capsule")
 local iface = settings.network.interface
 
 local net = capsule.item("widgets.network", {
-	icon = capsule.icon(icons.network, colors.grey, { padding_right = capsule.inner }),
+	-- the arrows glyph is 17pt wide. icon.width is the whole slot (paddings
+	-- included), so a centred 33pt slot = 8pt on both sides of the glyph.
+	icon = capsule.icon(icons.network, colors.grey, {
+		width = 17 + 2 * 8,
+		align = "center",
+		padding_left = 0,
+		padding_right = 0,
+	}),
 	label = { drawing = false },
 	update_freq = settings.widgets.network.update_freq,
 	popup = (function()
