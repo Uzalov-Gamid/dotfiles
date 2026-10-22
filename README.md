@@ -149,6 +149,7 @@ sketchybar/
 │   ├── capsule.lua       — общий вид виджета-капсулы
 │   ├── app_icons.lua     — имя приложения → иконка шрифта sketchybar-app-font
 │   ├── scripts/music_info.applescript — читает трек из Apple Music
+│   ├── scripts/check_gaps.sh — проверка: все промежутки равны, под чёлкой пусто
 │   └── event_providers/cpu_load — маленькая C-программа, считает загрузку CPU
 └── items/widgets/        — по файлу на виджет; порядок задаёт init.lua
 ```
@@ -160,6 +161,9 @@ sketchybar/
 (фон, скругление, отступы) — поменяешь там, поменяются все виджеты.
 Расстояние между всеми капсулами одинаковое — 7 pt (`settings.lua → paddings.container_paddings`),
 от краёв экрана — 9 pt (`paddings.edge_padding`).
+**Проверка после любых правок бара:** `skcheck` (в fish) или
+`~/.config/sketchybar/helpers/scripts/check_gaps.sh` — меряет все капсулы и
+пишет ✓, либо какие две капсулы стоят неровно / какая залезла под чёлку.
 Сами иконки — в `icons.lua`.
 
 ```
