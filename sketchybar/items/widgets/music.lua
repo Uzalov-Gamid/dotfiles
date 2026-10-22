@@ -9,15 +9,15 @@ local capsule = require("helpers.capsule")
 --   left click  — play / pause
 --   right click — next track
 --
--- Position "q" = flush against the left edge of the notch (see
--- settings.ui.notch_width), so it never slides under the cut-out.
+-- Sits on the left, right after the spaces/apps block. Long titles scroll
+-- within max_chars, so it stays well clear of the notch.
 
 local info_script = "osascript $CONFIG_DIR/helpers/scripts/music_info.applescript"
 
 sbar.add("event", "music_change", "com.apple.Music.playerInfo")
 
 local music = capsule.item("widgets.music", {
-	position = "q",
+	position = "left",
 	drawing = false,
 	icon = capsule.icon(icons.music, colors.magenta),
 	label = capsule.label("", {
@@ -25,8 +25,8 @@ local music = capsule.item("widgets.music", {
 		scroll_duration = 150,
 	}),
 	scroll_texts = settings.scroll_texts,
-	padding_left = 0,
-	padding_right = capsule.gap,
+	padding_left = capsule.gap + 4,
+	padding_right = 0,
 	-- keep receiving music_change while hidden, so it can show itself again
 	updates = true,
 })

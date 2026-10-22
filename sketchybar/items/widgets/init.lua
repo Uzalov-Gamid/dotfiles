@@ -14,7 +14,8 @@ require("items.widgets.ram")
 -- require("items.widgets.keyboard")
 require("items.widgets.system")
 require("items.widgets.network")
-require("items.widgets.music")
 
 require("items.widgets.aerospace_d")
+-- after the spaces block, so the player sits right next to it
+require("items.widgets.music")
 -- require("items.widgets.yabai")
