@@ -12,6 +12,7 @@ sbar.bar({
 	margin = settings.ui.background.margin,
 	y_offset = settings.ui.background.y_offset,
 	corner_radius = settings.ui.background.corner_radius,
+	notch_width = settings.ui.notch_width,
 	display = 1,
 	position = "top",
 })

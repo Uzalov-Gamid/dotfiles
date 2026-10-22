@@ -12,6 +12,10 @@ local font = {
 
 local ui = {
 	bar_height = 33,
+	-- MacBook Air 15" notch is 179pt wide (measured via NSScreen safe areas).
+	-- Items with position "q" sit flush left of it, "e" flush right, so
+	-- nothing ends up hidden under the cut-out. A little extra = breathing room.
+	notch_width = 190,
 	-- bar_height = 38,
 	background = {
 		border_width = 0,
@@ -112,6 +116,13 @@ return {
 		family = font.text,
 		style = font.style_map["Bold"],
 		size = sizes.label_medium,
+	},
+
+	-- SF Symbols glyphs used as widget icons (see icons.lua)
+	icon_font = {
+		family = "SF Pro",
+		style = font.style_map["Bold"],
+		size = sizes.icon_small,
 	},
 
 	binaries = {

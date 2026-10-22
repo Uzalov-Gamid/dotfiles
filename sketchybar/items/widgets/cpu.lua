@@ -1,7 +1,10 @@
+local icons = require("icons")
 local colors = require("colors")
 local settings = require("settings")
+local capsule = require("helpers.capsule")
 
-local nesting_padding = (settings.ui.container.height - settings.ui.container.nesting_height) / 2
+-- CPU load from the cpu_load event provider (helpers/event_providers),
+-- which fires cpu_update every poll_seconds.
 
 sbar.exec(
 	string.format(
@@ -10,85 +13,9 @@ sbar.exec(
 	)
 )
 
-local outer_right_padding = sbar.add("item", "widgets.cpu.outer.padding.right", {
-	position = "right",
-	width = nesting_padding,
-	drawing = true,
-	icon = { drawing = false },
-	label = { drawing = false },
-})
-
-local cpu_label = sbar.add("item", "widgets.cpu.label", {
-	position = "right",
-	icon = { drawing = false },
-	label = {
-		string = "??%",
-		font = settings.label_font,
-		color = colors.white,
-		align = "center",
-	},
-	padding_left = settings.paddings.group_padding,
-	padding_right = settings.paddings.paddings - nesting_padding,
-})
-
-local cpu_icon = sbar.add("item", "widgets.cpu.icon", {
-	position = "right",
-	label = { drawing = false },
-	icon = {
-		string = "CPU",
-		color = colors.blue,
-		font = {
-			family = settings.font.text,
-			style = settings.font.style_map["Bold"],
-			size = settings.sizes.label_medium,
-		},
-		align = "center",
-	},
-	padding_left = settings.paddings.paddings - nesting_padding,
-})
-
-local outer_left_padding = sbar.add("item", "widgets.cpu.outer.padding.left", {
-	position = "right",
-	width = nesting_padding,
-	drawing = true,
-	icon = { drawing = false },
-	label = { drawing = false },
-})
-
-sbar.add("item", "widgets.cpu.spacer", {
-	position = "right",
-	icon = { drawing = false },
-	label = { drawing = false },
-	width = settings.paddings.container_paddings,
-})
-
-sbar.add("bracket", "widgets.cpu.inner", {
-	"widgets.cpu.icon",
-	"widgets.cpu.label",
-}, {
-	background = {
-		color = colors.container.nesting_bg,
-		height = settings.ui.container.nesting_height,
-		corner_radius = settings.ui.container.nesting_corner_radius,
-		border_color = colors.container.nesting_border_color,
-		border_width = settings.ui.background.border_width + 1,
-	},
-})
-
-sbar.add("bracket", "widgets.cpu.outer", {
-	"widgets.cpu.outer.padding.left",
-	"widgets.cpu.icon",
-	"widgets.cpu.label",
-	"widgets.cpu.outer.padding.right",
-}, {
-	background = {
-		color = colors.container.bg,
-		height = settings.ui.container.height,
-		border_color = colors.container.border_color,
-		border_width = settings.ui.container.border_width,
-		corner_radius = settings.ui.container.corner_radius,
-		y_offset = settings.ui.container.y_offset,
-	},
+local cpu = capsule.item("widgets.cpu", {
+	icon = capsule.icon(icons.cpu),
+	label = capsule.label("??%"),
 })
 
 local function get_cpu_color(load)
@@ -105,14 +32,11 @@ local function get_cpu_color(load)
 	return colors.blue
 end
 
-cpu_icon:subscribe("cpu_update", function(env)
+cpu:subscribe("cpu_update", function(env)
 	local load = tonumber(env.total_load) or 0
 
-	cpu_icon:set({
+	cpu:set({
 		icon = { color = get_cpu_color(load) },
-	})
-
-	cpu_label:set({
 		label = { string = string.format("%.0f%%", load) },
 	})
 end)

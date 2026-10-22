@@ -1,6 +1,7 @@
 local icons = require("icons")
 local colors = require("colors")
 local settings = require("settings")
+local capsule = require("helpers.capsule")
 
 local keyboard_settings = {
 	default_label = "??",
@@ -15,8 +16,6 @@ local keyboard_settings = {
 	},
 }
 
-local nesting_padding = (settings.ui.container.height - settings.ui.container.nesting_height) / 2
-
 os.execute(
 	string.format(
 		"sketchybar --add event %s '%s' 2>/dev/null",
@@ -25,91 +24,20 @@ os.execute(
 	)
 )
 
-local outer_right_padding = sbar.add("item", "widgets.system.outer.padding.right", {
-	position = "right",
-	width = nesting_padding,
-	drawing = true,
-	icon = { drawing = false },
-	label = { drawing = false },
-	padding_left = 0,
-	padding_right = 0,
-})
-
-local keyboard = sbar.add("item", "widgets.system.keyboard", {
-	position = "right",
-	icon = { drawing = false },
-	label = {
-		string = keyboard_settings.default_label,
-		font = settings.label_font,
-		align = "center",
-		color = colors.white,
-	},
-	padding_left = settings.paddings.paddings,
-	padding_right = settings.paddings.paddings - 3,
-})
-
-local wifi = sbar.add("item", "widgets.system.wifi", {
-	position = "right",
-	icon = {
+-- One capsule: network status icon + keyboard layout ( 􀙇 EN ).
+-- The wifi code sets the icon, the keyboard code sets the label.
+local system = capsule.item("widgets.system", {
+	icon = capsule.icon(icons.wifi.connected, colors.white, {
 		font = {
-			style = settings.font.style_map["Bold"],
+			family = settings.icon_font.family,
+			style = settings.icon_font.style,
 			size = settings.sizes.icon_medium,
 		},
-		align = "center",
-	},
-	-- padding_left = settings.paddings.paddings - nesting_padding,
-	padding_left = settings.paddings.paddings - 3,
-	label = { drawing = false },
+	}),
+	label = capsule.label(keyboard_settings.default_label),
 })
-
-local outer_left_padding = sbar.add("item", "widgets.system.outer.padding.left", {
-	position = "right",
-	width = nesting_padding,
-	drawing = true,
-	icon = { drawing = false },
-	label = { drawing = false },
-	padding_left = 0,
-	padding_right = 0,
-})
-
-sbar.add("item", "widgets.system.spacer", {
-	position = "right",
-	icon = { drawing = false },
-	label = { drawing = false },
-	width = settings.paddings.paddings,
-})
-
--- Keep the related system indicators together inside the outer container.
-sbar.add("bracket", "widgets.system.inner", {
-	"widgets.system.wifi",
-	"widgets.system.keyboard",
-}, {
-	background = {
-		color = colors.container.nesting_bg,
-		height = settings.ui.container.nesting_height,
-		corner_radius = settings.ui.container.nesting_corner_radius,
-		border_color = colors.container.nesting_border_color,
-		border_width = settings.ui.background.border_width + 1,
-		-- padding_left = 0,
-		-- padding_right = 0,
-	},
-})
-
-sbar.add("bracket", "widgets.system.outer", {
-	"widgets.system.outer.padding.left",
-	"widgets.system.wifi",
-	"widgets.system.keyboard",
-	"widgets.system.outer.padding.right",
-}, {
-	background = {
-		color = colors.container.bg,
-		height = settings.ui.container.height,
-		border_color = colors.container.border_color,
-		border_width = settings.ui.container.border_width,
-		corner_radius = settings.ui.container.corner_radius,
-		y_offset = settings.ui.container.y_offset,
-	},
-})
+local keyboard = system
+local wifi = system
 
 local layout_script = [[
 defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources 2>/dev/null | grep -w "KeyboardLayout Name" | cut -d "=" -f 2 | tr -d '"; '
@@ -136,7 +64,7 @@ local function update_layout()
 	end)
 end
 
-keyboard:subscribe({ keyboard_settings.event_name, "system_woke" }, update_layout)
+keyboard:subscribe(keyboard_settings.event_name, update_layout)
 update_layout()
 
 local network_script = [[
@@ -198,5 +126,10 @@ local function update_wifi()
 	end)
 end
 
-wifi:subscribe({ "wifi_change", "system_woke" }, update_wifi)
+wifi:subscribe("wifi_change", update_wifi)
+-- one item can hold one callback per event, so wake refreshes both halves
+system:subscribe("system_woke", function()
+	update_wifi()
+	update_layout()
+end)
 sbar.exec("sleep 0.1", update_wifi)

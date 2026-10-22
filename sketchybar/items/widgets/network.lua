@@ -1,99 +1,38 @@
 local icons = require("icons")
 local colors = require("colors")
 local settings = require("settings")
+local capsule = require("helpers.capsule")
 
-local nesting_padding = (settings.ui.container.height - settings.ui.container.nesting_height) / 2
+-- Live download / upload speed of the main interface (en0): 􀄩 6K  􀄨 7K
+
 local iface = settings.network.interface
 
-local outer_right_padding = sbar.add("item", "widgets.network.outer.padding.right", {
-	position = "right",
-	width = nesting_padding,
-	drawing = true,
-	icon = { drawing = false },
-	label = { drawing = false },
-})
-
-local function speed_item(name, icon, padding_left, padding_right)
-	return sbar.add("item", name, {
-		position = "right",
-		icon = {
-			string = icon,
-			color = colors.blue,
-			font = {
-				style = settings.font.style_map["Bold"],
-				size = settings.sizes.icon_small,
-			},
-			padding_right = 3,
-		},
-		label = {
-			string = "0K",
-			font = settings.label_font,
-			color = colors.white,
-			width = settings.widgets.network.label_width,
-			align = "left",
-		},
-		padding_left = padding_left,
-		padding_right = padding_right,
+local function speed_item(name, glyph, props)
+	props.position = "right"
+	props.icon = capsule.icon(glyph, colors.blue, props.icon)
+	props.label = capsule.label("0K", {
+		width = settings.widgets.network.label_width,
+		align = "left",
+		padding_right = props.label_padding_right or 0,
 	})
+	props.label_padding_right = nil
+	return sbar.add("item", name, props)
 end
 
-local net_up = speed_item(
-	"widgets.network.up",
-	icons.wifi.upload,
-	settings.paddings.group_padding,
-	settings.paddings.paddings - nesting_padding
-)
-local net_down = speed_item(
-	"widgets.network.down",
-	icons.wifi.download,
-	settings.paddings.paddings - nesting_padding,
-	0
-)
-net_down:set({ update_freq = settings.widgets.network.update_freq })
-
-local outer_left_padding = sbar.add("item", "widgets.network.outer.padding.left", {
-	position = "right",
-	width = nesting_padding,
-	drawing = true,
-	icon = { drawing = false },
-	label = { drawing = false },
+-- right items are added right-to-left, so "up" first
+local net_up = speed_item("widgets.network.up", icons.wifi.upload, {
+	icon = { padding_left = 4 },
+	label_padding_right = capsule.inner - 4,
+	padding_left = 0,
+	padding_right = 0,
+})
+local net_down = speed_item("widgets.network.down", icons.wifi.download, {
+	padding_left = capsule.gap,
+	padding_right = 0,
+	update_freq = settings.widgets.network.update_freq,
 })
 
-sbar.add("item", "widgets.network.spacer", {
-	position = "right",
-	icon = { drawing = false },
-	label = { drawing = false },
-	width = settings.paddings.container_paddings,
-})
-
-sbar.add("bracket", "widgets.network.inner", {
-	"widgets.network.down",
-	"widgets.network.up",
-}, {
-	background = {
-		color = colors.container.nesting_bg,
-		height = settings.ui.container.nesting_height,
-		corner_radius = settings.ui.container.nesting_corner_radius,
-		border_color = colors.container.nesting_border_color,
-		border_width = settings.ui.background.border_width + 1,
-	},
-})
-
-sbar.add("bracket", "widgets.network.outer", {
-	"widgets.network.outer.padding.left",
-	"widgets.network.down",
-	"widgets.network.up",
-	"widgets.network.outer.padding.right",
-}, {
-	background = {
-		color = colors.container.bg,
-		height = settings.ui.container.height,
-		border_color = colors.container.border_color,
-		border_width = settings.ui.container.border_width,
-		corner_radius = settings.ui.container.corner_radius,
-		y_offset = settings.ui.container.y_offset,
-	},
-})
+capsule.bracket("widgets.network.capsule", { "widgets.network.down", "widgets.network.up" })
 
 -- bytes/s -> "0K", "840K", "1.4M", "12M"
 local function format_speed(bytes_per_sec)
