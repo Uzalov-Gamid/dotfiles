@@ -25,7 +25,7 @@ local music = capsule.item("widgets.music", {
 		scroll_duration = 150,
 	}),
 	scroll_texts = settings.scroll_texts,
-	padding_left = capsule.gap + 4,
+	padding_left = capsule.gap,
 	padding_right = 0,
 	-- keep receiving music_change while hidden, so it can show itself again
 	updates = true,
