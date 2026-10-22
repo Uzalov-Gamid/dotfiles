@@ -26,7 +26,7 @@ source "$HOME/.config/fish/tide.config.fish"
 abbr -a asrc "source ~/.config/fish/config.fish"
 
 abbr -a fishconf "nvim ~/.config/fish/config.fish"
-abbr -a zshconf "nvim ~/.zshrc"
+abbr -a zshconf "nvim ~/.config/zsh/.zshrc"
 abbr -a nvimconf "nvim ~/.config/nvim"
 abbr -a atuinconf "nvim ~/.config/atuin/config.toml"
 abbr -a asconf "nvim ~/.config/aerospace/aerospace.toml"
@@ -35,19 +35,13 @@ abbr -a gconf "nvim ~/.config/ghostty/config.ghostty"
 abbr -a skconf "nvim ~/.config/sketchybar"
 abbr -a ssconf "nvim ~/.config/starship.toml"
 abbr -a bordersconf "nvim ~/.config/borders/bordersrc"
-abbr -a svimconf "nvim ~/.config/svim/blacklist"
 abbr -a ffconf "nvim ~/.config/fastfetch"
-abbr -a niriconf "nvim ~/.config/niri/"
-abbr -a riftconf "nvim ~/.config/rift/config.toml"
-abbr -a ybconf "nvim ~/.config/yabai/"
-abbr -a skhdconf "nvim ~/.config/skhd/skhdrc"
-abbr -a sqlsconf "nvim ~/.config/sqls/config.yml"
+abbr -a karaconf "nvim ~/.config/karabiner/karabiner.json"
+abbr -a dots "cd ~/.config && git status -sb"
 
-abbr -a cm chezmoi
 abbr -a ip "curl ipinfo.io"
 abbr -a ta "tmux a"
 abbr -a tn tmux
-alias kick "NVIM_APPNAME=nvim-kickstart nvim"
 
 abbr -a lg lazygit
 abbr -a gs "git status -sb"
@@ -62,7 +56,7 @@ abbr -a gsw "git switch"
 abbr -a gl "git log --graph --decorate --all"
 abbr -a glo "git log --oneline"
 abbr -a gd "git diff"
-abbr -a gr "git remote -v"
+abbr -a grv "git remote -v"
 abbr -a gcl "git clone"
 
 abbr -a dops "docker ps"
@@ -80,14 +74,29 @@ end
 alias ff "fastfetch --config ~/.config/fastfetch/apple.jsonc"
 abbr -a c clear
 alias cd z
-alias rm rmt
+# rm moves files to the macOS Trash (/usr/bin/trash) instead of deleting
+# them for good. rm-style flags (-r, -f, -rf, ...) are accepted and
+# dropped, since Trash handles folders anyway. Real rm: `command rm`.
+function rm --description 'move files to Trash'
+    set -l files
+    set -l only_files 0
+    for arg in $argv
+        if test $only_files -eq 0; and test "$arg" = --
+            set only_files 1
+        else if test $only_files -eq 0; and string match -qr -- '^-' $arg
+            continue
+        else
+            set -a files $arg
+        end
+    end
+    test (count $files) -gt 0; or return 0
+    /usr/bin/trash $files
+end
 # alias ls lsd
 alias ls "lsd -lah --group-dirs first"
 alias n nvim
 alias cal "~/go/bin/calendar"
 abbr -a yz yazi
-
-alias nl "NVIM_APPNAME=nvim-lazy nvim"
 
 bind ctrl-\\ 'status test-terminal-feature scroll-content-up && commandline -f scrollback-push; commandline -f clear-screen'
 bind -M insert ctrl-\\ 'status test-terminal-feature scroll-content-up && commandline -f scrollback-push; commandline -f clear-screen'
@@ -123,7 +132,3 @@ Dirs:
 end
 
 set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
-
-# Added by OrbStack: command-line tools and integration
-# This won't be added again if you remove it.
-source ~/.orbstack/shell/init2.fish 2>/dev/null || :
