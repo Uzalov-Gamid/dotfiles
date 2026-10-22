@@ -43,7 +43,7 @@
 | `nvim/` | [Neovim](https://neovim.io) + [LazyVim](https://lazyvim.org) | Редактор | ✅ работает |
 | `git/` | git + [delta](https://github.com/dandavison/delta) | Имя/почта, красивые диффы, алиасы | ✅ работает |
 | `atuin/` | [atuin](https://atuin.sh) | История команд с поиском (`Ctrl-R`) | ✅ работает |
-| `zsh/` | zsh + Starship (`starship.toml`) | Запасная оболочка (её используют скрипты и Claude Code) | ✅ работает |
+| `zsh/` | zsh + Starship (`starship.toml`) | Запасная оболочка (её используют скрипты и сторонние программы) | ✅ работает |
 | `btop/` | btop | Монитор процессов | ✅ |
 | `fastfetch/` | fastfetch | Инфо о системе (`ff`) | ✅ |
 | `colima/` | [Colima](https://github.com/abiosoft/colima) | Docker без Docker Desktop: VM 4 CPU / 6 GB / 40 GB | ✅ |
@@ -303,7 +303,7 @@ Git сам читает `~/.config/git/config`. Пейджер — **delta** (п
 
 ### zsh — [`zsh/`](zsh/)
 
-Не основная оболочка, но её используют скрипты и Claude Code. Единственный файл вне `~/.config` — `~/.zshenv` из одной строки
+Не основная оболочка, но её используют скрипты и сторонние программы. Единственный файл вне `~/.config` — `~/.zshenv` из одной строки
 `export ZDOTDIR="$HOME/.config/zsh"`, которая говорит zsh искать `.zshrc`/`.zprofile` здесь. Промпт — Starship (`starship.toml`).
 
 ---
@@ -351,5 +351,5 @@ macOS спросит. Вручную: Jazz (SberJazz) и My Words — их не�
 ## История
 
 Предыдущий вариант репозитория (zsh + Starship + tmux + свой Neovim в тёплой
-палитре «как Claude Code») сохранён под тегом `legacy-zsh-rig`:
+палитре) сохранён под тегом `legacy-zsh-rig`:
 `git checkout legacy-zsh-rig` — посмотреть, `git checkout main` — вернуться.
