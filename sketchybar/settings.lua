@@ -81,6 +81,23 @@ local widgets = {
 	battery = {
 		update_freq = 120,
 	},
+	ram = {
+		update_freq = 10,
+		-- % of memory in use (100 - "memory free" from memory_pressure)
+		thresholds = {
+			medium = 60,
+			high = 75,
+			critical = 90,
+		},
+	},
+	network = {
+		update_freq = 2,
+		label_width = 32,
+	},
+	music = {
+		-- longer "Artist — Title" strings scroll inside this many chars
+		max_chars = 28,
+	},
 }
 
 return {

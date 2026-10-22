@@ -7,11 +7,14 @@ require("items.widgets.calendar")
 require("items.widgets.battery")
 require("items.widgets.volume")
 require("items.widgets.cpu")
+require("items.widgets.ram")
 
 -- separator("widgets.separator.2")
 
 -- require("items.widgets.keyboard")
 require("items.widgets.system")
+require("items.widgets.network")
+require("items.widgets.music")
 
 require("items.widgets.aerospace_d")
 -- require("items.widgets.yabai")
