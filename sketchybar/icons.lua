@@ -10,6 +10,7 @@ local icons = {
 		ram = "􀫦",
 		calendar = "􀉉",
 		music = "􀑪",
+		network = "􀄬",
 		clipboard = "􀉄",
 
 		switch = {
@@ -56,6 +57,7 @@ local icons = {
 		ram = "\u{F035B}",
 		calendar = "\u{F073}",
 		music = "\u{F075A}",
+		network = "\u{F06F3}",
 		clipboard = "Missing Icon",
 
 		switch = {

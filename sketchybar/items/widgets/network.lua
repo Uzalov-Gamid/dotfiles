@@ -3,73 +3,94 @@ local colors = require("colors")
 local settings = require("settings")
 local capsule = require("helpers.capsule")
 
--- Live download / upload speed of the main interface (en0): 􀄩 6K  􀄨 7K
+-- Network: in the bar just an icon whose colour shows activity
+--   grey  — idle (< 10 KB/s)
+--   blue  — traffic
+--   green — heavy traffic (> 1 MB/s in either direction)
+-- Click it for a popup with speeds, Wi-Fi name, local/public IP and VPN.
 
 local iface = settings.network.interface
 
-local function speed_item(name, glyph, props)
-	props.position = "right"
-	-- smaller than the other widgets: two numbers have to fit in one capsule
-	local icon = {
-		font = {
-			family = settings.icon_font.family,
-			style = settings.icon_font.style,
-			size = settings.sizes.label_small - 1,
-		},
-		padding_right = 2,
-	}
-	for k, v in pairs(props.icon or {}) do
-		icon[k] = v
-	end
-	props.icon = capsule.icon(glyph, colors.blue, icon)
-	props.label = capsule.label("0K", {
-		font = {
-			family = settings.label_font.family,
-			style = settings.label_font.style,
-			size = settings.sizes.label_small,
-		},
-		width = settings.widgets.network.label_width,
-		align = "left",
-		padding_right = props.label_padding_right or 0,
-	})
-	props.label_padding_right = nil
-	return sbar.add("item", name, props)
-end
-
--- right items are added right-to-left, so "up" first
-local net_up = speed_item("widgets.network.up", icons.wifi.upload, {
-	icon = { padding_left = 2 },
-	label_padding_right = capsule.inner - 3,
-	padding_left = 0,
-	padding_right = 0,
-})
--- no outer padding on the left: the bracket background would swallow it.
--- The gap to the wifi capsule comes from that widget's padding_right.
-local net_down = speed_item("widgets.network.down", icons.wifi.download, {
-	padding_left = 0,
-	padding_right = 0,
+local net = capsule.item("widgets.network", {
+	icon = capsule.icon(icons.network, colors.grey, { padding_right = capsule.inner }),
+	label = { drawing = false },
 	update_freq = settings.widgets.network.update_freq,
+	popup = (function()
+		local popup = {}
+		for k, v in pairs(capsule.popup_style) do
+			popup[k] = v
+		end
+		popup.height = 26 -- row height
+		return popup
+	end)(),
 })
 
-capsule.bracket("widgets.network.capsule", { "widgets.network.down", "widgets.network.up" })
+local parent = "widgets.network"
+local rows = {
+	down = capsule.popup_row("widgets.network.popup.down", parent, "Загрузка"),
+	up = capsule.popup_row("widgets.network.popup.up", parent, "Отдача"),
+	ssid = capsule.popup_row("widgets.network.popup.ssid", parent, "Сеть"),
+	lip = capsule.popup_row("widgets.network.popup.lip", parent, "Локальный IP"),
+	pip = capsule.popup_row("widgets.network.popup.pip", parent, "Внешний IP"),
+	vpn = capsule.popup_row("widgets.network.popup.vpn", parent, "VPN"),
+}
 
--- bytes/s -> "0K", "840K", "1.4M", "12M"
+-- bytes/s -> "0 КБ/с", "840 КБ/с", "1.4 МБ/с", "12 МБ/с"
 local function format_speed(bytes_per_sec)
 	local kb = bytes_per_sec / 1024
 	if kb < 1000 then
-		return string.format("%.0fK", kb)
+		return string.format("%.0f КБ/с", kb)
 	end
 	local mb = kb / 1024
 	if mb < 10 then
-		return string.format("%.1fM", mb)
+		return string.format("%.1f МБ/с", mb)
 	end
-	return string.format("%.0fM", mb)
+	return string.format("%.0f МБ/с", mb)
 end
+
+local details_script = string.format(
+	[[
+IFACE=%s
+SSID=$(ipconfig getsummary "$IFACE" | awk -F ' SSID : ' '/ SSID : / {print $2}')
+# macOS hides the network name from apps without Location access
+[ "$SSID" = "<redacted>" ] && SSID="Wi-Fi"
+if [ -z "$SSID" ]; then
+  if [ -n "$(ipconfig getifaddr "$IFACE")" ]; then SSID="Ethernet"; else SSID="нет сети"; fi
+fi
+LIP=$(ipconfig getifaddr "$IFACE"); [ -z "$LIP" ] && LIP="—"
+if scutil --nwi | grep -m1 'VPN' >/dev/null; then VPN="включён"; else VPN="выключен"; fi
+echo "$SSID|$LIP|$VPN"
+]],
+	iface
+)
+
+-- Wi-Fi name, IPs and VPN only matter while you look at them, so they are
+-- fetched when the popup opens, not every 2 seconds.
+local function refresh_details()
+	sbar.exec(details_script, function(out)
+		local ssid, lip, vpn = (out or ""):match("^([^|]*)|([^|]*)|([^\r\n]*)")
+		rows.ssid:set({ label = { string = ssid or "—" } })
+		rows.lip:set({ label = { string = lip or "—" } })
+		rows.vpn:set({
+			label = {
+				string = vpn or "—",
+				color = vpn == "включён" and colors.green or colors.white,
+			},
+		})
+	end)
+	rows.pip:set({ label = { string = "…" } })
+	sbar.exec("curl -s --max-time 3 https://ipinfo.io/ip", function(out)
+		local ip = (out or ""):match("^%s*([%d%.:a-fA-F]+)%s*$")
+		rows.pip:set({ label = { string = ip or "нет ответа" } })
+	end)
+end
+
+capsule.attach_popup(net, refresh_details)
 
 -- netstat gives total bytes since boot; speed = delta / elapsed time.
 local last = nil
 
-net_down:subscribe({ "routine", "forced", "system_woke" }, function()
+net:subscribe({ "routine", "forced", "system_woke" }, function()
 	local cmd = string.format("netstat -ibn -I %s | awk 'NR==2 {print $7, $10}'; date +%%s", iface)
 	sbar.exec(cmd, function(out)
 		local rx, tx, now = (out or ""):match("(%d+)%s+(%d+)%s+(%d+)")
@@ -82,15 +103,18 @@ net_down:subscribe({ "routine", "forced", "system_woke" }, function()
 			local elapsed = now - last.time
 			local down = (rx - last.rx) / elapsed
 			local up = (tx - last.tx) / elapsed
+			local peak = math.max(down, up)
 
-			net_down:set({
-				label = { string = format_speed(down) },
-				icon = { color = down > 1024 * 1024 and colors.green or colors.blue },
-			})
-			net_up:set({
-				label = { string = format_speed(up) },
-				icon = { color = up > 1024 * 1024 and colors.green or colors.blue },
-			})
+			local color = colors.grey
+			if peak > 1024 * 1024 then
+				color = colors.green
+			elseif peak > 10 * 1024 then
+				color = colors.blue
+			end
+			net:set({ icon = { color = color } })
+
+			rows.down:set({ label = { string = format_speed(down) } })
+			rows.up:set({ label = { string = format_speed(up) } })
 		end
 
 		last = { rx = rx, tx = tx, time = now }

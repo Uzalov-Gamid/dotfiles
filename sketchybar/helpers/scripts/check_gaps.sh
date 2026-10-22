@@ -4,7 +4,8 @@
 # Run after changing widgets:  ~/.config/sketchybar/helpers/scripts/check_gaps.sh
 #
 # A "capsule" is any visible item or bracket that draws a background,
-# except items that sit inside a bracket (the bracket is the capsule).
+# except items that sit inside a bracket (the bracket is the capsule) and
+# items inside popups.
 
 GAP=7         # settings.paddings.container_paddings
 EDGE=9        # settings.paddings.edge_padding
@@ -22,6 +23,7 @@ rects=$(for i in $items; do
   echo "$members" | grep -qx "$i" && continue
   sketchybar --query "$i" | jq -r --arg i "$i" '
     select(.geometry.drawing == "on")
+    | select(.geometry.position | startswith("popup") | not)
     | select(.type == "bracket" or .geometry.background.drawing == "on")
     | .bounding_rects["display-1"] // empty
     | "\(.origin[0]) \(.size[0]) \($i)"'

@@ -68,6 +68,79 @@ function capsule.bracket(name, members)
 	return sbar.add("bracket", name, members, { background = capsule.background })
 end
 
+-- The small window that opens under a widget on click. Same palette as
+-- the capsules, a bit more opaque so the text stays readable over windows.
+capsule.popup_style = {
+	align = "center",
+	y_offset = 6,
+	blur_radius = 30,
+	background = {
+		color = colors.with_alpha(colors.black, 0.94),
+		border_color = colors.container.border_color,
+		border_width = 1,
+		corner_radius = 12,
+	},
+}
+
+-- Left click toggles the popup, leaving the bar/popup closes it.
+-- on_open (optional) runs every time the popup opens.
+-- on_right_click (optional): an item keeps one callback per event, so any
+-- other click handling has to go through here.
+function capsule.attach_popup(item, on_open, on_right_click)
+	local is_open = false
+
+	local function set_open(open)
+		is_open = open
+		item:set({ popup = { drawing = open } })
+		if open and on_open then
+			on_open()
+		end
+	end
+
+	item:subscribe("mouse.clicked", function(env)
+		if env.BUTTON == "left" then
+			set_open(not is_open)
+		elseif on_right_click then
+			on_right_click(env)
+		end
+	end)
+	item:subscribe("mouse.exited.global", function()
+		set_open(false)
+	end)
+
+	return function()
+		return is_open
+	end
+end
+
+-- A "key   value" row inside a popup: key grey on the left, value white
+-- on the right.
+function capsule.popup_row(name, parent, key, extra)
+	local props = {
+		position = "popup." .. parent,
+		icon = {
+			string = key,
+			font = settings.label_font,
+			color = colors.grey,
+			width = 110,
+			padding_left = 12,
+		},
+		label = {
+			string = "…",
+			font = settings.label_font,
+			color = colors.white,
+			width = 140,
+			align = "right",
+			padding_right = 12,
+		},
+		background = { drawing = false },
+	}
+	for k, v in pairs(extra or {}) do
+		props[k] = v
+	end
+	return sbar.add("item", name, props)
+end
+
 capsule.gap = gap
 capsule.inner = inner
 

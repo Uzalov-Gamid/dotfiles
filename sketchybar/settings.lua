@@ -96,7 +96,6 @@ local widgets = {
 	},
 	network = {
 		update_freq = 2,
-		label_width = 26,
 	},
 	music = {
 		-- longer "Artist — Title" strings scroll inside this many chars

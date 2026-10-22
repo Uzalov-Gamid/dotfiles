@@ -35,7 +35,6 @@ local system = capsule.item("widgets.system", {
 		},
 	}),
 	label = capsule.label(keyboard_settings.default_label),
-	padding_right = capsule.gap, -- gap to the network capsule (see network.lua)
 })
 local keyboard = system
 local wifi = system
