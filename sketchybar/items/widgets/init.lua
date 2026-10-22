@@ -12,8 +12,10 @@ require("items.widgets.ram")
 -- separator("widgets.separator.2")
 
 -- require("items.widgets.keyboard")
-require("items.widgets.system")
+-- right side is built right-to-left: network ends up left of RAM,
+-- system (wifi + layout) left of network
 require("items.widgets.network")
+require("items.widgets.system")
 
 require("items.widgets.aerospace_d")
 -- after the spaces block, so the player sits right next to it

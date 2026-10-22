@@ -9,8 +9,25 @@ local iface = settings.network.interface
 
 local function speed_item(name, glyph, props)
 	props.position = "right"
-	props.icon = capsule.icon(glyph, colors.blue, props.icon)
+	-- smaller than the other widgets: two numbers have to fit in one capsule
+	local icon = {
+		font = {
+			family = settings.icon_font.family,
+			style = settings.icon_font.style,
+			size = settings.sizes.label_small - 1,
+		},
+		padding_right = 2,
+	}
+	for k, v in pairs(props.icon or {}) do
+		icon[k] = v
+	end
+	props.icon = capsule.icon(glyph, colors.blue, icon)
 	props.label = capsule.label("0K", {
+		font = {
+			family = settings.label_font.family,
+			style = settings.label_font.style,
+			size = settings.sizes.label_small,
+		},
 		width = settings.widgets.network.label_width,
 		align = "left",
 		padding_right = props.label_padding_right or 0,
@@ -21,13 +38,15 @@ end
 
 -- right items are added right-to-left, so "up" first
 local net_up = speed_item("widgets.network.up", icons.wifi.upload, {
-	icon = { padding_left = 4 },
-	label_padding_right = capsule.inner - 4,
+	icon = { padding_left = 2 },
+	label_padding_right = capsule.inner - 3,
 	padding_left = 0,
 	padding_right = 0,
 })
+-- no outer padding on the left: the bracket background would swallow it.
+-- The gap to the wifi capsule comes from that widget's padding_right.
 local net_down = speed_item("widgets.network.down", icons.wifi.download, {
-	padding_left = capsule.gap,
+	padding_left = 0,
 	padding_right = 0,
 	update_freq = settings.widgets.network.update_freq,
 })
