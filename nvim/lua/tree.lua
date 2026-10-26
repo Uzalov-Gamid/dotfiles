@@ -347,7 +347,8 @@ local function setup_window()
   wo.cursorcolumn = false
   wo.colorcolumn = ""
   wo.winfixwidth = true
-  wo.winhighlight = "Normal:TreeNormal,CursorLine:TreeCursorLine,EndOfBuffer:TreeNormal"
+  wo.winhighlight = "Normal:TreeNormal,CursorLine:TreeCursorLine"
+  wo.fillchars = "eob: " -- no ~ under the last entry
 end
 
 function M.open()

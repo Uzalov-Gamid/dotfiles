@@ -31,8 +31,9 @@ end
 
 -- ── Editor UI ────────────────────────────────────────────────────────
 hl("Normal", { fg = c.fg })                -- no bg: use the terminal's
-hl("NormalFloat", { fg = c.fg, bg = c.bg1 })
-hl("FloatBorder", { fg = c.blue, bg = c.bg1 })   -- rounded borders of popups / cmdline box
+hl("NormalFloat", { fg = c.fg })                  -- floating windows: transparent
+hl("MsgArea", { fg = c.fg })                      -- cmdline box & messages: transparent
+hl("FloatBorder", { fg = c.blue })                -- rounded borders: just the blue line
 hl("CursorLine", { bg = c.bg1 })
 hl("CursorLineNr", { fg = c.orange, bold = true })
 hl("LineNr", { fg = c.dim })
@@ -86,7 +87,7 @@ for icon_name, color in pairs({ Blue = c.blue, Steel = c.steel, Yellow = c.yello
 end
 
 -- project tree (lua/tree.lua): a slightly darker side panel
-hl("TreeNormal", { fg = c.fg, bg = "#171110" })
+hl("TreeNormal", { fg = c.fg })                   -- transparent, like the editor
 hl("TreeCursorLine", { bg = c.bg1 })
 hl("TreeRoot", { fg = c.orange, bold = true })
 hl("TreeDir", { fg = c.blue, bold = true })
