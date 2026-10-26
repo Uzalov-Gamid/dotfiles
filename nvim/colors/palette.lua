@@ -45,7 +45,7 @@ hl("IncSearch", { fg = c.bg1, bg = c.orange })
 hl("CurSearch", { link = "IncSearch" })
 hl("MatchParen", { fg = c.orange, bold = true, underline = true })
 hl("NonText", { fg = c.dim })
-hl("Whitespace", { fg = c.dim })
+hl("Whitespace", { fg = "#463731" }) -- indent guides & trailing spaces: barely visible
 hl("EndOfBuffer", { fg = c.bg1 })
 hl("Pmenu", { fg = c.fg, bg = c.bg1 })
 hl("PmenuSel", { fg = c.bg1, bg = c.blue, bold = true })

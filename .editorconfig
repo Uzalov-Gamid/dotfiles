@@ -1,0 +1,17 @@
+# Indentation per folder of this repo. Neovim applies it automatically
+# (built-in EditorConfig support) and it wins over nvim/after/ftplugin.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+
+# SketchyBar's Lua config is written with tabs
+[sketchybar/**.lua]
+indent_style = tab
+indent_size = 4
+
+[nvim/**.lua]
+indent_style = space
+indent_size = 2

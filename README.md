@@ -297,21 +297,22 @@ sketchybar/
 
 ### Neovim — [`nvim/`](nvim/)
 
-Намеренно простой конфиг — основа, чтобы дальше писать свой. **Без плагинов и LSP.** Подсветка: tree-sitter для Lua, C, Vimscript, Markdown (парсеры встроены в Neovim), встроенная regex-подсветка для остальных языков.
+**Подробная шпаргалка: [`docs/nvim.md`](docs/nvim.md).**
 
-- [`init.lua`](nvim/init.lua) — всё в одном файле по блокам: настройки, клавиши, автокоманды, строка состояния.
-- [`colors/palette.lua`](nvim/colors/palette.lua) — своя тема **astronaut**: основной цвет — голубой `#7daea3` свечения окон (ключевые слова, интерфейс), оранжевый `#ef8f4c` с обоев — точечный акцент (числа, константы, номер строки, поиск); функции — жёлтый, типы — стальной синий, строки — олива, текст — кремовый `#e3dccb`. Та же палитра в Ghostty (`ghostty/themes/astronaut`). Фон берётся из терминала. Поменять цвет — правишь таблицу `c` и `:colorscheme palette`.
+Намеренно без плагинов, LSP, автодополнения и подчёркивания ошибок — чтобы учить
+языки самому. Под стек Python, C, Markdown и DevOps (YAML, Dockerfile, bash,
+Makefile, Terraform, Jinja/Ansible, JSON, TOML, SQL):
 
-| Клавиши | Действие |
-|---|---|
-| `Space` | Leader |
-| `Space w` / `Space q` | Сохранить / закрыть |
-| `Space e` | Встроенный файловый браузер (netrw) |
-| `Esc` | Убрать подсветку поиска |
-| `Ctrl-h/j/k/l` | Переход между сплитами (как панели в tmux) |
-| `J` / `K` в visual | Двигать выделенные строки вниз / вверх |
-| `p` в visual | Вставить, не теряя скопированное |
-| `y` / `p` | Работают с буфером обмена macOS |
+- [`init.lua`](nvim/init.lua) — общее: настройки, клавиши, поиск (`:find`, ripgrep),
+  терминал, запуск кода, линии уровней отступа, строка состояния.
+- [`after/ftplugin/`](nvim/after/ftplugin/) — по файлу на язык: ширина отступа, линия
+  длины строки, что запускает `Space r` (python3 / cc с флагами School 21 или make /
+  bash / docker build).
+- [`colors/palette.lua`](nvim/colors/palette.lua) — тема **astronaut**: голубой
+  `#7daea3` свечения окон — основной, оранжевый `#ef8f4c` с обоев — акцент.
+- Подсветка: tree-sitter для Lua, C, Markdown (парсеры встроены), regex-подсветка
+  Neovim для остальных.
+- [`.editorconfig`](.editorconfig) в корне репо: Lua в `sketchybar/` — табы, в `nvim/` — 2 пробела.
 
 ### git — [`git/config`](git/config)
 

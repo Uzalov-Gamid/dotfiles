@@ -4,6 +4,7 @@
 # end up on GitHub by accident.
 /*
 !/.gitignore
+!/.editorconfig
 !/README.md
 !/Brewfile
 !/install.sh
