@@ -1,11 +1,10 @@
--- C: 4 spaces, a guide at column 80. A project's .editorconfig wins.
+-- C: 4 spaces. A project's .editorconfig wins.
 -- <leader>r: `make` if there is a Makefile, otherwise compile this file
 -- with the School 21 flags and run it.
 vim.opt_local.shiftwidth = 4
 vim.opt_local.tabstop = 4
 vim.opt_local.expandtab = true
 vim.opt_local.cindent = true
-vim.opt_local.colorcolumn = "80"
 vim.opt_local.commentstring = "// %s"
 
 vim.keymap.set("n", "<leader>r", function()
