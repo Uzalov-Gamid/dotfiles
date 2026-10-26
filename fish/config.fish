@@ -1,3 +1,6 @@
+# no "Welcome to fish" greeting
+set -g fish_greeting
+
 # Homebrew first in PATH, so brew's git/curl/python3 win over /usr/bin
 /opt/homebrew/bin/brew shellenv fish | source
 

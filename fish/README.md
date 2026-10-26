@@ -46,6 +46,7 @@
 
 - **Homebrew первым в PATH** — `git`, `python3`, `pip3` берутся из brew.
 - `EDITOR` / `VISUAL` = nvim.
+- Приветствие «Welcome to fish» отключено (`set -g fish_greeting`).
 - Python-библиотеки — в brew-Python, список в [`../python/`](../python/).
 
 ## Плагины
