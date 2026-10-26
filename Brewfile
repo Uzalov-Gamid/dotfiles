@@ -49,11 +49,10 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
 # ── Editors ───────────────────────────────────────────────────────────
-brew "neovim"                    # LazyVim
-brew "ripgrep"                   #   search in project
-brew "fd"                        #   file finder
-brew "tree-sitter-cli"           #   syntax parsers
-brew "node"                      #   LSP servers via Mason + npm tools
+brew "neovim"                    # $EDITOR (no custom config)
+brew "ripgrep"                   # `rg`, fast search
+brew "fd"                        # fast file finder
+brew "node"                      # npm tools (TickTick CLI, SQL formatter)
 cask "visual-studio-code"
 
 # ── Git ───────────────────────────────────────────────────────────────

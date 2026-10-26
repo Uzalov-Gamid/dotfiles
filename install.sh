@@ -74,5 +74,5 @@ brew services start sketchybar
 open -a AeroSpace
 
 log "Done. Grant Accessibility access to AeroSpace and Karabiner when macOS asks,"
-log "then open Ghostty. Neovim installs its plugins on first launch."
+log "then open Ghostty."
 log "By hand: Jazz (SberJazz), My Words — see the end of Brewfile."

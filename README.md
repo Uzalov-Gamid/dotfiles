@@ -28,7 +28,7 @@
  └─ Ice, Raycast, Handy, OneMenu (Login Items, настраиваются в их GUI)
 
 терминал
- Ghostty ─► fish (+ Tide промпт, atuin, zoxide, fzf) ─► tmux ─► Neovim (LazyVim)
+ Ghostty ─► fish (+ Tide промпт, atuin, zoxide, fzf) ─► tmux
 ```
 
 | Папка | Программа | Что делает | Статус |
@@ -40,7 +40,6 @@
 | `fish/` | [fish](https://fishshell.com) + [Tide](https://github.com/IlanCosman/tide) | Основная оболочка | ✅ работает |
 | `ghostty/` | [Ghostty](https://ghostty.org) | Терминал | ✅ работает |
 | `tmux/` | [tmux](https://github.com/tmux/tmux) | Мультиплексор терминала | ✅ работает |
-| `nvim/` | [Neovim](https://neovim.io) + [LazyVim](https://lazyvim.org) | Редактор | ✅ работает |
 | `git/` | git + [delta](https://github.com/dandavison/delta) | Имя/почта, красивые диффы, алиасы | ✅ работает |
 | `atuin/` | [atuin](https://atuin.sh) | История команд с поиском (`Ctrl-R`) | ✅ работает |
 | `zsh/` | zsh + Starship (`starship.toml`) | Запасная оболочка (её используют скрипты и сторонние программы) | ✅ работает |
@@ -255,7 +254,7 @@ sketchybar/
 ### Ghostty — [`ghostty/config.ghostty`](ghostty/config.ghostty)
 
 Тема Gruvbox Dark, шрифт **0xProto Nerd Font**, без заголовка окна и кнопок.
-`Option` работает как `Alt` (нужно для хоткеев fish/tmux/nvim).
+`Option` работает как `Alt` (нужно для хоткеев fish и tmux).
 **Quick terminal** — выпадающий терминал по центру экрана: `alt-1` (или `cmd-F20`) из любого приложения.
 В `ghostty/shaders/` — коллекция шейдеров-эффектов курсора (не включены; подключаются строкой `custom-shader = ...`).
 
@@ -273,13 +272,15 @@ sketchybar/
 - `cheat <команда>` — шпаргалка с cheat.sh. `ip` — твой внешний IP.
 - Git: `gs` status, `ga` add, `gcm` commit -m, `gp` push, `gpl` pull, `gl` граф, `gd` diff, `grv` remotes …
 - Docker: `dops`, `doco`, `doe`.
-- Конфиги: `fishconf`, `asconf` (AeroSpace), `skconf` (SketchyBar), `bordersconf`, `gconf` (Ghostty), `tmuxconf`, `nvimconf`, `karaconf`, `asrc` — перечитать fish.
+- Конфиги: `fishconf`, `asconf` (AeroSpace), `skconf` (SketchyBar), `bordersconf`, `gconf` (Ghostty), `tmuxconf`, `karaconf`, `asrc` — перечитать fish.
 - School 21: `dohelp21` — справка по Docker-контейнеру школы (`buildcont21`, `docreate21`, `doon21`, `do21`, `dooff21`).
 - `Ctrl-\` — очистить экран, сохранив прокрутку.
 
 > Это *abbr* (сокращения): набираешь `gs` + пробел — разворачивается в полную команду.
 
 ### tmux — [`tmux/tmux.conf`](tmux/tmux.conf)
+
+**Подробная шпаргалка: [`docs/tmux.md`](docs/tmux.md)** — сессии, окна, панели, копирование, плагины.
 
 Префикс стандартный: **`Ctrl-b`** (с Karabiner — `Caps+b`). Статус-бар сверху, окна нумеруются с 1.
 
@@ -289,16 +290,9 @@ sketchybar/
 | `prefix b` | Плавающее окно (плагин floax) |
 | `prefix Ctrl-←↓↑→` | Изменить размер панели |
 | `Ctrl-Shift-↑/↓` | Переставить окно влево/вправо |
-| `Ctrl-h/j/k/l` | Переход между панелями tmux **и** окнами nvim (vim-tmux-navigator) |
+| `Ctrl-h/j/k/l` | Переход между панелями (vim-tmux-navigator) |
 | `prefix [` → `v` … `y` | Выделить и скопировать в буфер macOS |
 | `prefix I` | Установить плагины (TPM) |
-
-### Neovim — `nvim/` (LazyVim)
-
-Основа — [LazyVim](https://lazyvim.org) (`Space` — leader, `Space` и подожди — меню which-key).
-Подключённые extras (`nvim/lazyvim.json`): языки Go, Python, C/C++ (clangd, cmake), SQL, Docker, YAML, TOML, Markdown, Gleam; neo-tree, telescope, mini-surround.
-Свои плагины — `nvim/lua/plugins/`: темы (gruvbox, catppuccin, kanagawa, tokyonight), базы данных (vim-dadbod + UI, sqls), conform (форматирование), vim-rooter, vim-tmux-navigator, cellular-automaton (`:CellularAutomaton make_it_rain` 🙂).
-Свои клавиши (`nvim/lua/config/keymaps.lua`): `p`/`P` в visual поменяны местами (вставка не портит буфер), `a` на пустой строке сразу ставит правильный отступ, `Ctrl-j` в insert — принять подсказку Copilot, `:dash` — стартовый экран.
 
 ### git — [`git/config`](git/config)
 

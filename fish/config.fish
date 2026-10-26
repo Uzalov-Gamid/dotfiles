@@ -28,7 +28,6 @@ abbr -a asrc "source ~/.config/fish/config.fish"
 
 abbr -a fishconf "nvim ~/.config/fish/config.fish"
 abbr -a zshconf "nvim ~/.config/zsh/.zshrc"
-abbr -a nvimconf "nvim ~/.config/nvim"
 abbr -a atuinconf "nvim ~/.config/atuin/config.toml"
 abbr -a asconf "nvim ~/.config/aerospace/aerospace.toml"
 abbr -a tmuxconf "nvim ~/.config/tmux/tmux.conf"
