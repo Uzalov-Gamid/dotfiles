@@ -25,7 +25,7 @@
 
 | Группа | Команды |
 |---|---|
-| Редактор, утилиты | `n` nvim · `lg` lazygit · `yz` yazi · `ff` fastfetch |
+| Редактор, утилиты | `n` nvim · `lg` lazygit · `yz` yazi · `ff` fastfetch · `md файл.md` — прочитать Markdown (glow) |
 | tmux | `tn` новый · `ta` вернуться в последнюю сессию ([tmux](../tmux/)) |
 | git | `gs` status · `ga` add · `gc` commit · `gcm` commit -m · `gp` push · `gpl` pull · `gb` branch · `gco` checkout · `gsw` switch · `gl` граф · `glo` oneline · `gd` diff · `grv` remotes · `gcl` clone |
 | docker | `dops` ps · `doco` compose · `doe` exec |

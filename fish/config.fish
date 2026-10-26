@@ -97,6 +97,8 @@ end
 alias ls "lsd -lah --group-dirs first"
 alias n nvim
 abbr -a yz yazi
+# read Markdown in the terminal, astronaut colours, scrollable (q to quit)
+alias md "glow -s ~/.config/glow/astronaut.json -p"
 
 bind ctrl-\\ 'status test-terminal-feature scroll-content-up && commandline -f scrollback-push; commandline -f clear-screen'
 bind -M insert ctrl-\\ 'status test-terminal-feature scroll-content-up && commandline -f scrollback-push; commandline -f clear-screen'

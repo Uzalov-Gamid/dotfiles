@@ -10,8 +10,8 @@
   каждом сохранении, `Space p` ещё раз — закрыть (см. [nvim](../nvim/)).
 - **В терминале**:
   ```sh
-  glow README.md        # вывести (стиль astronaut — по умолчанию, из glow.yml)
-  glow -p README.md     # с прокруткой (q — выход)
+  md README.md          # ★ alias в fish: стиль astronaut + прокрутка (q — выход)
+  glow README.md        # просто вывести (стиль тоже astronaut — из glow.yml)
   glow                  # выбрать .md в текущей папке
   ```
 
