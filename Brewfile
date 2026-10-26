@@ -49,7 +49,7 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
 # ── Editors ───────────────────────────────────────────────────────────
-brew "neovim"                    # $EDITOR (no custom config)
+brew "neovim"                    # editor, minimal config in nvim/
 brew "ripgrep"                   # `rg`, fast search
 brew "fd"                        # fast file finder
 brew "node"                      # npm tools (TickTick CLI, SQL formatter)

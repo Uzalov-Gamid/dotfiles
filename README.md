@@ -28,7 +28,7 @@
  └─ Ice, Raycast, Handy, OneMenu (Login Items, настраиваются в их GUI)
 
 терминал
- Ghostty ─► fish (+ Tide промпт, atuin, zoxide, fzf) ─► tmux
+ Ghostty ─► fish (+ Tide промпт, atuin, zoxide, fzf) ─► tmux ─► Neovim
 ```
 
 | Папка | Программа | Что делает | Статус |
@@ -39,6 +39,7 @@
 | `karabiner/` | [Karabiner-Elements](https://karabiner-elements.pqrs.org) | Переназначение клавиш | ✅ работает |
 | `fish/` | [fish](https://fishshell.com) + [Tide](https://github.com/IlanCosman/tide) | Основная оболочка | ✅ работает |
 | `ghostty/` | [Ghostty](https://ghostty.org) | Терминал | ✅ работает |
+| `nvim/` | [Neovim](https://neovim.io) | Редактор: минимальный конфиг без плагинов | ✅ работает |
 | `tmux/` | [tmux](https://github.com/tmux/tmux) | Мультиплексор терминала | ✅ работает |
 | `git/` | git + [delta](https://github.com/dandavison/delta) | Имя/почта, красивые диффы, алиасы | ✅ работает |
 | `atuin/` | [atuin](https://atuin.sh) | История команд с поиском (`Ctrl-R`) | ✅ работает |
@@ -272,7 +273,7 @@ sketchybar/
 - `cheat <команда>` — шпаргалка с cheat.sh. `ip` — твой внешний IP.
 - Git: `gs` status, `ga` add, `gcm` commit -m, `gp` push, `gpl` pull, `gl` граф, `gd` diff, `grv` remotes …
 - Docker: `dops`, `doco`, `doe`.
-- Конфиги: `fishconf`, `asconf` (AeroSpace), `skconf` (SketchyBar), `bordersconf`, `gconf` (Ghostty), `tmuxconf`, `karaconf`, `asrc` — перечитать fish.
+- Конфиги: `fishconf`, `asconf` (AeroSpace), `skconf` (SketchyBar), `bordersconf`, `gconf` (Ghostty), `tmuxconf`, `nvimconf`, `karaconf`, `asrc` — перечитать fish.
 - School 21: `dohelp21` — справка по Docker-контейнеру школы (`buildcont21`, `docreate21`, `doon21`, `do21`, `dooff21`).
 - `Ctrl-\` — очистить экран, сохранив прокрутку.
 
@@ -293,6 +294,24 @@ sketchybar/
 | `Ctrl-h/j/k/l` | Переход между панелями (vim-tmux-navigator) |
 | `prefix [` → `v` … `y` | Выделить и скопировать в буфер macOS |
 | `prefix I` | Установить плагины (TPM) |
+
+### Neovim — [`nvim/`](nvim/)
+
+Намеренно простой конфиг — основа, чтобы дальше писать свой. **Без плагинов и LSP.**
+
+- [`init.lua`](nvim/init.lua) — всё в одном файле по блокам: настройки, клавиши, автокоманды, строка состояния.
+- [`colors/palette.lua`](nvim/colors/palette.lua) — своя тема в цветах бара (голубой `#7daea3`, кремовый `#d4be98`, Gruvbox). Фон берётся из терминала. Поменять цвет — правишь таблицу `c` и `:colorscheme palette`.
+
+| Клавиши | Действие |
+|---|---|
+| `Space` | Leader |
+| `Space w` / `Space q` | Сохранить / закрыть |
+| `Space e` | Встроенный файловый браузер (netrw) |
+| `Esc` | Убрать подсветку поиска |
+| `Ctrl-h/j/k/l` | Переход между сплитами (как панели в tmux) |
+| `J` / `K` в visual | Двигать выделенные строки вниз / вверх |
+| `p` в visual | Вставить, не теряя скопированное |
+| `y` / `p` | Работают с буфером обмена macOS |
 
 ### git — [`git/config`](git/config)
 

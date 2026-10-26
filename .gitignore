@@ -32,6 +32,7 @@
 # Terminal & CLI tools
 !/ghostty/
 !/tmux/
+!/nvim/
 !/git/
 !/atuin/
 /atuin/*
