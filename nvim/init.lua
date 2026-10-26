@@ -72,6 +72,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- ── Syntax highlighting ──────────────────────────────────────────────
+-- Neovim ships tree-sitter parsers for Lua, C, Vimscript, Markdown and
+-- help files: those get precise highlighting. Every other language uses
+-- Neovim's built-in regex syntax, coloured by the same theme.
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+  end,
+})
+
 -- ── Look ─────────────────────────────────────────────────────────────
 vim.cmd.colorscheme("palette")
 

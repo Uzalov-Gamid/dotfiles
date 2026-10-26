@@ -254,7 +254,7 @@ sketchybar/
 
 ### Ghostty — [`ghostty/config.ghostty`](ghostty/config.ghostty)
 
-Тема Gruvbox Dark, шрифт **0xProto Nerd Font**, без заголовка окна и кнопок.
+Тема **astronaut** (`ghostty/themes/astronaut`, цвета с обоев), шрифт **SF Mono Semibold** (шрифт Xcode, `font-thicken` для жирности; Nerd-иконки Ghostty подставляет из встроенного набора), без заголовка окна и кнопок.
 `Option` работает как `Alt` (нужно для хоткеев fish и tmux).
 **Quick terminal** — выпадающий терминал по центру экрана: `alt-1` (или `cmd-F20`) из любого приложения.
 В `ghostty/shaders/` — коллекция шейдеров-эффектов курсора (не включены; подключаются строкой `custom-shader = ...`).
@@ -297,10 +297,10 @@ sketchybar/
 
 ### Neovim — [`nvim/`](nvim/)
 
-Намеренно простой конфиг — основа, чтобы дальше писать свой. **Без плагинов и LSP.**
+Намеренно простой конфиг — основа, чтобы дальше писать свой. **Без плагинов и LSP.** Подсветка: tree-sitter для Lua, C, Vimscript, Markdown (парсеры встроены в Neovim), встроенная regex-подсветка для остальных языков.
 
 - [`init.lua`](nvim/init.lua) — всё в одном файле по блокам: настройки, клавиши, автокоманды, строка состояния.
-- [`colors/palette.lua`](nvim/colors/palette.lua) — своя тема в цветах бара (голубой `#7daea3`, кремовый `#d4be98`, Gruvbox). Фон берётся из терминала. Поменять цвет — правишь таблицу `c` и `:colorscheme palette`.
+- [`colors/palette.lua`](nvim/colors/palette.lua) — своя тема **astronaut**: цвета взяты с обоев (оранжевый `#ef8f4c`, кремовый `#e3dccb`, олива, стальной синий) + голубой `#7daea3` свечения окон. Та же палитра в Ghostty (`ghostty/themes/astronaut`). Фон берётся из терминала. Поменять цвет — правишь таблицу `c` и `:colorscheme palette`.
 
 | Клавиши | Действие |
 |---|---|
