@@ -46,6 +46,7 @@
 | [`zsh/`](zsh/) | Запасная оболочка + Starship ([`starship.toml`](starship.toml)) |
 | [`btop/`](btop/) | Монитор процессов |
 | [`fastfetch/`](fastfetch/) | Информация о системе (`ff`) |
+| [`glow/`](glow/) | Предпросмотр Markdown (`Space p` в Neovim) |
 | [`colima/`](colima/) | Docker без Docker Desktop |
 | [`python/`](python/) | Личные Python-библиотеки |
 

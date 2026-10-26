@@ -131,12 +131,15 @@ map("n", "<leader>t", "<cmd>botright 12split | terminal<cr>", { desc = "Terminal
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
 
 vim.api.nvim_create_autocmd("TermOpen", {
-  callback = function()
+  callback = function(args)
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     vim.opt_local.signcolumn = "no"
     vim.opt_local.list = false
-    vim.cmd.startinsert()
+    -- read-only outputs (Markdown preview) are not typed into
+    if not vim.b[args.buf].no_insert then
+      vim.cmd.startinsert()
+    end
   end,
 })
 

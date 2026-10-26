@@ -52,6 +52,7 @@ brew "zsh-syntax-highlighting"
 brew "neovim"                    # editor, minimal config in nvim/
 brew "ripgrep"                   # `rg`, fast search
 brew "fd"                        # fast file finder
+brew "glow"                      # Markdown preview in nvim (<leader>p)
 brew "node"                      # npm tools (TickTick CLI, SQL formatter)
 cask "visual-studio-code"
 
