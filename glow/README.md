@@ -10,12 +10,15 @@
   каждом сохранении, `Space p` ещё раз — закрыть (см. [nvim](../nvim/)).
 - **В терминале**:
   ```sh
-  glow -s ~/.config/glow/astronaut.json README.md      # вывести
-  glow -s ~/.config/glow/astronaut.json -p README.md   # с прокруткой (q — выход)
-  glow                                                 # выбрать .md в текущей папке
+  glow README.md        # вывести (стиль astronaut — по умолчанию, из glow.yml)
+  glow -p README.md     # с прокруткой (q — выход)
+  glow                  # выбрать .md в текущей папке
   ```
 
 ## Как поменять
+
+[`glow.yml`](glow.yml) — настройки glow: `style` (сейчас astronaut), ширина, пейджер.
+
 
 `astronaut.json` — стиль [glamour](https://github.com/charmbracelet/glamour):
 `h1`…`h6` — заголовки, `code` — inline-код, `code_block.chroma` — подсветка
