@@ -17,7 +17,7 @@ window-padding-y = 14
 # macbook
 # SF Mono — the Xcode font, in a heavier weight. Nerd Font icons still work:
 # Ghostty has the Nerd Font symbols built in and falls back to them.
-font-size = 13.0
+font-size = 14.5
 font-family = "SF Mono"
 adjust-cell-height = 5
 # heavier strokes, like Xcode's rendering
