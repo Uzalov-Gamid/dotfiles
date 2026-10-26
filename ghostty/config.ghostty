@@ -54,6 +54,8 @@ font-style-bold = heavy
 
 
 mouse-hide-while-typing = true
+# no macOS scrollbar over the terminal (mouse / keys still scroll)
+scrollbar = never
 macos-option-as-alt = true
 auto-update = check
 macos-icon = retro

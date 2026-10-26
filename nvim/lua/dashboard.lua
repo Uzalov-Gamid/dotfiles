@@ -74,9 +74,12 @@ local function moon()
   local age = ((os.time() - known_new) / 86400) % synodic
   local lit = math.floor((1 - math.cos(2 * math.pi * age / synodic)) / 2 * 100 + 0.5)
   local names = {
-    { 1.84, "🌑", "новолуние" }, { 5.53, "🌒", "растущий серп" }, { 9.22, "🌓", "первая четверть" },
-    { 12.91, "🌔", "растущая луна" }, { 16.61, "🌕", "полнолуние" }, { 20.30, "🌖", "убывающая луна" },
-    { 23.99, "🌗", "последняя четверть" }, { 27.68, "🌘", "убывающий серп" }, { 99, "🌑", "новолуние" },
+    -- Nerd Font weather glyphs (monochrome, not Apple emoji)
+    { 1.84, "\u{e38d}", "новолуние" }, { 5.53, "\u{e390}", "растущий серп" },
+    { 9.22, "\u{e394}", "первая четверть" }, { 12.91, "\u{e396}", "растущая луна" },
+    { 16.61, "\u{e39b}", "полнолуние" }, { 20.30, "\u{e3a2}", "убывающая луна" },
+    { 23.99, "\u{e3a2}", "последняя четверть" }, { 27.68, "\u{e3a8}", "убывающий серп" },
+    { 99, "\u{e38d}", "новолуние" },
   }
   for _, n in ipairs(names) do
     if age < n[1] then
@@ -275,7 +278,7 @@ local function github_block()
     streak, i = streak + 1, i - 1
   end
   header("gh contributions --last " .. WEEKS .. "w",
-    string.format("%d/год · 🔥 %d · сегодня %d", gh.total or 0, streak, today))
+    string.format("%d/год · \u{f490} %d · сегодня %d", gh.total or 0, streak, today))
 
   -- grid: rows Mon..Sun, columns = weeks
   local weeks = {}
@@ -396,11 +399,14 @@ local function sky_block()
   header("sky --city " .. CITY.name, "")
   local when = (to_full == 0 or to_full >= 29) and " · сегодня" or string.format(" · полнолуние через %d дн", to_full)
   line(
-    { "  " .. icon .. " ", "" },
+    { "  ", "" },
+    { icon .. " ", "DashText" },
     { name, "DashText" },
     { string.format(" %d%%%s", lit, when), "DashDim" },
-    { "     ☀ ", "DashAccent" },
-    { sun(true) .. " → " .. sun(false), "DashText" }
+    { "     \u{e34c} ", "DashAccent" },
+    { sun(true), "DashText" },
+    { "   \u{e34d} ", "DashAccent" },
+    { sun(false), "DashText" }
   )
 end
 
