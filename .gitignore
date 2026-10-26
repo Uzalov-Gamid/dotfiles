@@ -10,7 +10,6 @@
 !/install.sh
 !/python/
 !/cursor/
-!/docs/
 
 # Window management & menu bar
 !/aerospace/
@@ -38,10 +37,12 @@
 !/atuin/
 /atuin/*
 !/atuin/config.toml
+!/atuin/README.md
 !/btop/
 !/fastfetch/
 !/colima/
 /colima/*
+!/colima/README.md
 !/colima/default/
 /colima/default/*
 !/colima/default/colima.yaml
