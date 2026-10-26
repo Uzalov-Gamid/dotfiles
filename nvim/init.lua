@@ -5,6 +5,7 @@
 --   init.lua                 — everything that applies to all files
 --   after/ftplugin/<ft>.lua  — per-language settings (indent width, how
 --                              <leader>r runs the file, …)
+--   lua/tree.lua             — the project tree (<leader>e)
 --   colors/palette.lua       — the colour scheme
 
 -- ── Leader ───────────────────────────────────────────────────────────
@@ -59,9 +60,12 @@ opt.wildmode = "longest:full,full"
 opt.grepprg = "rg --vimgrep --smart-case --hidden --glob=!.git"
 opt.grepformat = "%f:%l:%c:%m"
 
--- netrw (the built-in file browser): no banner, tree view
+-- netrw (built-in browser, :Explore): no banner, tree view, no ./ and ../
+-- The project tree on <leader>e is lua/tree.lua.
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
+vim.g.netrw_list_hide = [[^\.\.\=/\=$]]
+vim.g.netrw_hide = 1
 
 -- ── File types ───────────────────────────────────────────────────────
 -- fix what Neovim guesses wrong for this stack
@@ -80,7 +84,7 @@ local map = vim.keymap.set
 map("n", "<leader>w", "<cmd>write<cr>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>quit<cr>", { desc = "Quit" })
 map("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
-map("n", "<leader>e", "<cmd>Explore<cr>", { desc = "File browser (netrw)" })
+map("n", "<leader>e", function() require("tree").toggle() end, { desc = "Project tree" })
 
 -- finding: file by name, text in the project, open buffers
 map("n", "<leader>f", ":find ", { desc = "Find file (Tab completes)" })
@@ -97,6 +101,12 @@ map("n", "<C-h>", "<C-w>h", { desc = "Window left" })
 map("n", "<C-j>", "<C-w>j", { desc = "Window down" })
 map("n", "<C-k>", "<C-w>k", { desc = "Window up" })
 map("n", "<C-l>", "<C-w>l", { desc = "Window right" })
+
+-- resize the current split with Shift + arrows (Ctrl-w = makes them equal)
+map("n", "<S-Left>", "<cmd>vertical resize -4<cr>", { desc = "Narrower" })
+map("n", "<S-Right>", "<cmd>vertical resize +4<cr>", { desc = "Wider" })
+map("n", "<S-Up>", "<cmd>resize +2<cr>", { desc = "Taller" })
+map("n", "<S-Down>", "<cmd>resize -2<cr>", { desc = "Shorter" })
 
 -- move selected lines up/down, keep the selection
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move lines down" })
