@@ -45,6 +45,11 @@ if [ ! -f "$HOME/.local/share/sketchybar_lua/sketchybar.so" ]; then
   rm -rf "$tmp"
 fi
 
+# 6b. input-source: switches the keyboard to English when Ghostty gets focus
+#     (called by aerospace/ghostty-en.sh)
+mkdir -p "$HOME/.local/bin"
+swiftc -O "$CONFIG/aerospace/input-source.swift" -o "$HOME/.local/bin/input-source"
+
 # 7. zsh reads its config from ~/.config/zsh
 if [ ! -f "$HOME/.zshenv" ]; then
   echo 'export ZDOTDIR="$HOME/.config/zsh"' >"$HOME/.zshenv"

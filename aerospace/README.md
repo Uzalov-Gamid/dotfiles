@@ -74,6 +74,20 @@ aerospace list-apps                  # bundle ID запущенных прило
 aerospace reload-config              # перечитать конфиг из терминала
 ```
 
+## Английская раскладка в Ghostty
+
+Когда фокус переходит на окно Ghostty, раскладка сама переключается на
+английскую (ABC) — команды не начнутся с «ыщ». Внутри Ghostty можно спокойно
+переключиться на русский — до следующей смены фокуса он останется.
+
+- [`ghostty-en.sh`](ghostty-en.sh) — вызывается из `on-focus-changed`: если в фокусе
+  Ghostty, включает ABC.
+- [`input-source.swift`](input-source.swift) — маленькая программа для смены
+  раскладки, собранная в `~/.local/bin/input-source` (это делает `install.sh`):
+  `input-source` — показать текущую, `input-source com.apple.keylayout.Russian` — включить.
+- Для другого приложения — заменить bundle ID в `ghostty-en.sh`
+  (`aerospace list-apps`); отключить — убрать строку с `ghostty-en.sh` из `on-focus-changed`.
+
 ## Связь с баром
 
 При смене спейса, фокуса или режима AeroSpace шлёт в SketchyBar события
