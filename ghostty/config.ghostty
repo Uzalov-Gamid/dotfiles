@@ -48,7 +48,9 @@ font-thicken = true
 # font-feature = ss04
 # font-feature = -calt
 
-font-style = semibold
+font-style = bold
+# bold text (e.g. headings, git output) one step heavier, so it still stands out
+font-style-bold = heavy
 
 
 mouse-hide-while-typing = true

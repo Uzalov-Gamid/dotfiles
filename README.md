@@ -254,7 +254,7 @@ sketchybar/
 
 ### Ghostty — [`ghostty/config.ghostty`](ghostty/config.ghostty)
 
-Тема **astronaut** (`ghostty/themes/astronaut`, цвета с обоев), шрифт **SF Mono Semibold** (шрифт Xcode, `font-thicken` для жирности; Nerd-иконки Ghostty подставляет из встроенного набора), без заголовка окна и кнопок.
+Тема **astronaut** (`ghostty/themes/astronaut`, цвета с обоев), шрифт **SF Mono Bold** (жирный текст — Heavy) (шрифт Xcode, `font-thicken` для жирности; Nerd-иконки Ghostty подставляет из встроенного набора), без заголовка окна и кнопок.
 `Option` работает как `Alt` (нужно для хоткеев fish и tmux).
 **Quick terminal** — выпадающий терминал по центру экрана: `alt-1` (или `cmd-F20`) из любого приложения.
 В `ghostty/shaders/` — коллекция шейдеров-эффектов курсора (не включены; подключаются строкой `custom-shader = ...`).
