@@ -215,6 +215,11 @@ vim.api.nvim_create_autocmd("FileType", {
 -- ── Look ─────────────────────────────────────────────────────────────
 vim.cmd.colorscheme("palette")
 
+-- start screen: a small personal profile instead of the Neovim intro
+-- (lua/dashboard.lua); lua/activity.lua counts editing time for it
+require("activity").setup()
+require("dashboard").setup()
+
 -- Status line in the tmux bar's style: rounded pills on a transparent
 -- background.   ( NORMAL ) (  file ● )            ( filetype ) ( 26:1  14% )
 -- Colours: StMode* / StFile / StInfo in colors/palette.lua.
@@ -238,7 +243,9 @@ end
 -- icon + name of what is in the window (not "term://~/…//73894:/bin/sh")
 local function file_part()
   local buf = vim.api.nvim_get_current_buf()
-  if vim.b[buf].no_insert then
+  if vim.bo[buf].filetype == "dashboard" then
+    return "%#StIconTan#\u{f007} %#StFile#profile"
+  elseif vim.b[buf].no_insert then
     return "%#StIconBlue#\u{f02d} %#StFile#reading"
   elseif vim.bo[buf].buftype == "terminal" then
     return "%#StIconGreen#\u{f120} %#StFile#terminal"
@@ -258,6 +265,7 @@ function _G.statusline()
   local m = modes[vim.fn.mode():sub(1, 1)] or modes.n
   -- filetype pill only for real files (not terminal / reading view / tree)
   local is_file = vim.bo.buftype == "" and vim.bo.filetype ~= "tree"
+  local is_dashboard = vim.bo.filetype == "dashboard"
   local ft = vim.bo.filetype ~= "" and vim.bo.filetype or "text"
   -- no padding at the edges: pills sit flush, like the tmux bar
   return table.concat({
@@ -267,7 +275,7 @@ function _G.statusline()
     "%#StFileCap#" .. L .. "%#StFile# " .. file_part() .. " %#StFileCap#" .. R .. "%*",
     "%=",
     is_file and (pill("StInfo", " " .. ft .. " ") .. " ") or "",
-    pill("StInfo", " %l:%c  %p%% "),
+    is_dashboard and "" or pill("StInfo", " %l:%c  %p%% "),
   })
 end
 

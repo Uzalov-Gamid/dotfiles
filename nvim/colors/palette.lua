@@ -105,6 +105,24 @@ hl("TreeIconTan", { fg = c.tan })
 hl("TreeIconFg", { fg = c.fg })
 hl("TreeIconGrey", { fg = c.grey })
 
+-- start screen (lua/dashboard.lua)
+hl("DashLogo", { fg = "#d6a389" })                -- the identicon, its own colour
+hl("DashName", { fg = c.fg, bold = true })
+hl("DashText", { fg = c.fg })
+hl("DashDim", { fg = c.grey })
+hl("DashQuip", { fg = c.grey, italic = true })
+hl("DashAccent", { fg = c.orange, bold = true })
+hl("DashPrompt", { fg = c.blue, bold = true })
+hl("DashCmd", { fg = c.fg, bold = true })
+hl("DashKey", { fg = c.orange, bold = true })
+hl("DashSpark", { fg = c.blue })
+hl("DashNvim", { fg = c.yellow })
+hl("DashGh0", { fg = "#3a2c27" })                 -- no contributions
+hl("DashGh1", { fg = "#6b4430" })
+hl("DashGh2", { fg = "#a35f36" })
+hl("DashGh3", { fg = "#d97a3e" })
+hl("DashGh4", { fg = c.orange })
+
 -- ── Syntax ───────────────────────────────────────────────────────────
 hl("Comment", { fg = c.grey, italic = true })
 hl("String", { fg = c.green })
