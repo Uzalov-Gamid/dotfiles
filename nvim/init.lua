@@ -259,8 +259,8 @@ function _G.statusline()
   -- filetype pill only for real files (not terminal / reading view / tree)
   local is_file = vim.bo.buftype == "" and vim.bo.filetype ~= "tree"
   local ft = vim.bo.filetype ~= "" and vim.bo.filetype or "text"
+  -- no padding at the edges: pills sit flush, like the tmux bar
   return table.concat({
-    " ",
     pill(m[2], " " .. m[1] .. " "),
     " ",
     -- the file pill: its parts set their own colours, so build it by hand
@@ -268,9 +268,41 @@ function _G.statusline()
     "%=",
     is_file and (pill("StInfo", " " .. ft .. " ") .. " ") or "",
     pill("StInfo", " %l:%c  %p%% "),
-    " ",
   })
 end
 
 opt.statusline = "%!v:lua.statusline()"
 opt.laststatus = 3 -- one status line for all splits
+
+-- No command line row at the bottom: ':' and '/' open the input only while
+-- you type, messages pop up in a small window and fade after 4 s.
+-- ui2 is Neovim 0.12's built-in (experimental) messages/cmdline UI.
+opt.cmdheight = 0
+local ok_ui2, ui2 = pcall(require, "vim._core.ui2")
+if ok_ui2 then
+  ui2.enable({ enable = true, msg = { targets = "msg", msg = { timeout = 4000 } } })
+
+  -- Put the ':' / '/' input in a centred box (like a command palette)
+  -- instead of the bottom row. Uses ui2's internal window handle, so it is
+  -- wrapped in pcall: if a future Neovim changes ui2, input just stays at
+  -- the bottom.
+  local function center_cmdline()
+    local win = ui2.wins and ui2.wins.cmd
+    if not (win and vim.api.nvim_win_is_valid(win)) then
+      return
+    end
+    local width = math.min(70, vim.o.columns - 8)
+    pcall(vim.api.nvim_win_set_config, win, {
+      relative = "editor",
+      row = math.floor(vim.o.lines * 0.3),
+      col = math.floor((vim.o.columns - width) / 2),
+      width = width,
+      border = "rounded",
+    })
+  end
+  vim.api.nvim_create_autocmd({ "VimEnter", "VimResized", "CmdlineEnter" }, {
+    callback = function()
+      vim.schedule(center_cmdline)
+    end,
+  })
+end

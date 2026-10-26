@@ -32,7 +32,7 @@ end
 -- ── Editor UI ────────────────────────────────────────────────────────
 hl("Normal", { fg = c.fg })                -- no bg: use the terminal's
 hl("NormalFloat", { fg = c.fg, bg = c.bg1 })
-hl("FloatBorder", { fg = c.dim, bg = c.bg1 })
+hl("FloatBorder", { fg = c.blue, bg = c.bg1 })   -- rounded borders of popups / cmdline box
 hl("CursorLine", { bg = c.bg1 })
 hl("CursorLineNr", { fg = c.orange, bold = true })
 hl("LineNr", { fg = c.dim })
