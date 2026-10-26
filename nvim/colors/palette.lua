@@ -50,8 +50,8 @@ hl("EndOfBuffer", { fg = c.bg1 })
 hl("Pmenu", { fg = c.fg, bg = c.bg1 })
 hl("PmenuSel", { fg = c.bg1, bg = c.blue, bold = true })
 hl("PmenuThumb", { bg = c.dim })
-hl("StatusLine", { fg = c.fg, bg = c.bg1 })
-hl("StatusLineNC", { fg = c.grey, bg = c.bg1 })
+hl("StatusLine", { fg = c.fg })    -- transparent: the pills carry the colour
+hl("StatusLineNC", { fg = c.grey })
 hl("TabLine", { fg = c.grey, bg = c.bg1 })
 hl("TabLineSel", { fg = c.fg, bold = true })
 hl("TabLineFill", { bg = c.bg1 })
@@ -64,10 +64,26 @@ hl("MoreMsg", { fg = c.green })
 hl("Question", { fg = c.blue })
 
 -- status line mode pill (used by the statusline in init.lua)
-hl("StatusMode", { fg = c.bg1, bg = c.blue, bold = true })
-hl("StatusModeInsert", { fg = c.bg1, bg = c.orange, bold = true })
-hl("StatusModeVisual", { fg = c.bg1, bg = c.yellow, bold = true })
-hl("StatusModeCommand", { fg = c.bg1, bg = c.green, bold = true })
+-- status line pills, same look as the tmux bar (init.lua builds the line).
+-- Each pill = body group + "Cap" group for the rounded ends.
+local pills = {
+  StMode = { c.blue, "#1c1513" },        -- NORMAL (like the tmux session)
+  StModeInsert = { c.orange, "#1c1513" },
+  StModeVisual = { c.yellow, "#1c1513" },
+  StModeCommand = { c.green, "#1c1513" },
+  StFile = { c.bg2, c.fg },               -- file name (like the current window)
+  StInfo = { c.bg1, c.grey },             -- filetype, position
+}
+for name, p in pairs(pills) do
+  hl(name, { fg = p[2], bg = p[1], bold = name:match("^StMode") ~= nil })
+  hl(name .. "Cap", { fg = p[1] })
+end
+hl("StModified", { fg = c.orange, bg = c.bg2 })
+-- file icons inside the file pill: tree colours on the pill background
+for icon_name, color in pairs({ Blue = c.blue, Steel = c.steel, Yellow = c.yellow,
+  Orange = c.orange, Green = c.green, Tan = c.tan, Fg = c.fg, Grey = c.grey, Dir = c.blue }) do
+  hl("StIcon" .. icon_name, { fg = color, bg = c.bg2 })
+end
 
 -- project tree (lua/tree.lua): a slightly darker side panel
 hl("TreeNormal", { fg = c.fg, bg = "#171110" })

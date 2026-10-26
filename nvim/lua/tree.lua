@@ -69,6 +69,12 @@ local function icon_for(item)
   return ICON.file, "TreeIconGrey"
 end
 
+-- icon + colour name for a file name (also used by the status line)
+function M.file_icon(name)
+  local icon, group = icon_for({ name = name, dir = false })
+  return icon, (group:gsub("^TreeIcon", ""))
+end
+
 -- folder contents: folders first, then files, both alphabetical
 local function scan(dir)
   local list = {}

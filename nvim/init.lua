@@ -39,6 +39,7 @@ opt.splitbelow = true         -- :split opens below
 opt.mouse = "a"
 opt.clipboard = "unnamedplus" -- y / p use the macOS clipboard
 opt.undofile = true           -- undo history survives closing the file
+opt.swapfile = false          -- no .swp files / "swapfile exists" warnings
 opt.updatetime = 250
 opt.termguicolors = true      -- 24-bit colours (Ghostty supports them)
 opt.showmode = false          -- the mode is shown in the status line
@@ -214,25 +215,60 @@ vim.api.nvim_create_autocmd("FileType", {
 -- ── Look ─────────────────────────────────────────────────────────────
 vim.cmd.colorscheme("palette")
 
--- Status line: [ MODE ] file [+]                 filetype  line:col  %
+-- Status line in the tmux bar's style: rounded pills on a transparent
+-- background.   ( NORMAL ) (  file ● )            ( filetype ) ( 26:1  14% )
+-- Colours: StMode* / StFile / StInfo in colors/palette.lua.
+local L, R = "\u{e0b6}", "\u{e0b4}" -- rounded pill ends (Nerd Font)
+
 local modes = {
-  n = { "NORMAL", "StatusMode" },
-  i = { "INSERT", "StatusModeInsert" },
-  v = { "VISUAL", "StatusModeVisual" },
-  V = { "V-LINE", "StatusModeVisual" },
-  ["\22"] = { "V-BLOCK", "StatusModeVisual" },
-  c = { "COMMAND", "StatusModeCommand" },
-  R = { "REPLACE", "StatusModeInsert" },
-  t = { "TERMINAL", "StatusModeInsert" },
+  n = { "NORMAL", "StMode" },
+  i = { "INSERT", "StModeInsert" },
+  v = { "VISUAL", "StModeVisual" },
+  V = { "V-LINE", "StModeVisual" },
+  ["\22"] = { "V-BLOCK", "StModeVisual" },
+  c = { "COMMAND", "StModeCommand" },
+  R = { "REPLACE", "StModeInsert" },
+  t = { "TERMINAL", "StModeInsert" },
 }
+
+local function pill(group, text)
+  return "%#" .. group .. "Cap#" .. L .. "%#" .. group .. "#" .. text .. "%#" .. group .. "Cap#" .. R .. "%*"
+end
+
+-- icon + name of what is in the window (not "term://~/…//73894:/bin/sh")
+local function file_part()
+  local buf = vim.api.nvim_get_current_buf()
+  if vim.b[buf].no_insert then
+    return "%#StIconBlue#\u{f02d} %#StFile#reading"
+  elseif vim.bo[buf].buftype == "terminal" then
+    return "%#StIconGreen#\u{f120} %#StFile#terminal"
+  elseif vim.bo[buf].filetype == "tree" then
+    return "%#StIconDir#\u{f07c} %#StFile#project"
+  end
+  local name = vim.fn.expand("%:t")
+  if name == "" then
+    return "%#StFile#[new file]"
+  end
+  local icon, color = require("tree").file_icon(name)
+  local modified = vim.bo[buf].modified and " %#StModified#\u{25cf}" or ""
+  return "%#StIcon" .. color .. "#" .. icon .. " %#StFile#" .. vim.fn.expand("%:~:."):gsub("%%", "%%%%") .. modified
+end
 
 function _G.statusline()
   local m = modes[vim.fn.mode():sub(1, 1)] or modes.n
+  -- filetype pill only for real files (not terminal / reading view / tree)
+  local is_file = vim.bo.buftype == "" and vim.bo.filetype ~= "tree"
+  local ft = vim.bo.filetype ~= "" and vim.bo.filetype or "text"
   return table.concat({
-    "%#" .. m[2] .. "# " .. m[1] .. " %*",
-    " %f %m",
+    " ",
+    pill(m[2], " " .. m[1] .. " "),
+    " ",
+    -- the file pill: its parts set their own colours, so build it by hand
+    "%#StFileCap#" .. L .. "%#StFile# " .. file_part() .. " %#StFileCap#" .. R .. "%*",
     "%=",
-    "%y  %l:%c  %p%% ",
+    is_file and (pill("StInfo", " " .. ft .. " ") .. " ") or "",
+    pill("StInfo", " %l:%c  %p%% "),
+    " ",
   })
 end
 
