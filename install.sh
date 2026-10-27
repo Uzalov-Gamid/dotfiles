@@ -1,7 +1,7 @@
 #!/bin/bash
 # Sets up this Mac from scratch: apps, tools and every config in ~/.config.
 #
-#   git clone https://github.com/Uzalov-Gamid/dotfiles.git ~/.config
+#   git clone https://github.com/Uzalov-Gamid/houston.git ~/.config
 #   ~/.config/install.sh
 #
 # Safe to re-run: every step skips what is already done.

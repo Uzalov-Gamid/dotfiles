@@ -1,4 +1,31 @@
-# dotfiles — `~/.config` моего MacBook
+# houston
+
+> *Houston, we have a config.*
+
+Мой macOS: тайлинговые окна, верхняя панель, терминал и редактор — всё в одной
+палитре **astronaut**: цвета взяты с обоев (оранжевый, кремовый, тёмное стекло
+шлема, олива) плюс голубое свечение активного окна.
+
+![Ghostty + tmux + Neovim: дерево проекта, подсветка, строки состояния](screenshots/editor.png)
+
+<details>
+<summary><b>Ещё скриншоты</b> — стартовый экран Neovim и режим чтения Markdown</summary>
+
+**Стартовый экран Neovim** — мини-профиль: активность GitHub, команды из atuin, время в редакторе, фаза Луны.
+Имя и город на скриншоте — демо, свои лежат в `nvim/lua/local_profile.lua` (не в репо).
+
+![Стартовый экран Neovim](screenshots/dashboard.png)
+
+**Режим чтения Markdown** — `Space p`, как в Obsidian; рисует `glow` в цветах темы.
+
+![Режим чтения Markdown](screenshots/reading.png)
+
+</details>
+
+Скриншоты сняты на демо-проекте, без личных данных. Верхняя панель — SketchyBar
+(видна на всех кадрах), нижняя строка и верхняя плашка внутри окна — Neovim и tmux.
+
+---
 
 Этот репозиторий — **сама папка `~/.config`**. Без симлинков: программы читают
 конфиги прямо отсюда, а git следит за папкой.
@@ -57,7 +84,7 @@
 ## Установка на новый Mac
 
 ```sh
-git clone https://github.com/Uzalov-Gamid/dotfiles.git ~/.config
+git clone https://github.com/Uzalov-Gamid/houston.git ~/.config
 ~/.config/install.sh
 ```
 
