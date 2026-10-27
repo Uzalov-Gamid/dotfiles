@@ -17,12 +17,19 @@ local M = {}
 local api = vim.api
 
 -- ── Settings ─────────────────────────────────────────────────────────
+-- Defaults shown in the repo. Your own data goes into lua/local_profile.lua
+-- (not tracked, see local_profile.example.lua) and overrides these.
 local PROFILE = {
-  name = "Gamid Uzalov",
-  handle = "@Uzalov-Gamid",
-  bio = "devops · school 21 · msk",
+  name = "Astro Naut",
+  handle = "@astronaut",
+  bio = "devops · linux · homelab",
 }
-local CITY = { name = "msk", lat = 55.7558, lon = 37.6173, utc = 3 }
+local CITY = { name = "greenwich", lat = 51.4779, lon = -0.0015, utc = 0 }
+local ok_local, mine = pcall(require, "local_profile")
+if ok_local and type(mine) == "table" then
+  PROFILE = vim.tbl_extend("force", PROFILE, mine.profile or {})
+  CITY = vim.tbl_extend("force", CITY, mine.city or {})
+end
 local WIDTH = 66 -- content width; the block is centred in the window
 local WEEKS = 26 -- GitHub grid: last half year
 local DAYS = 52 -- terminal sparkline: last 52 days

@@ -108,7 +108,7 @@ alias buildcont21="docker-buildx build -t s21_env ."
 
 function docreate21
     docker run -it -d --name school-container \
-        --hostname lnx-wady \
+        --hostname lnx-s21 \
         -v ~/Projects/School:/home/school \
         -v ~/.ssh:/root/.ssh:ro \
         -v ~/.config/git/config:/root/.gitconfig:ro \

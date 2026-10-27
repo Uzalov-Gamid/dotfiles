@@ -1,6 +1,7 @@
-[user]
-	name = Gamid Uzalov
-	email = uzalovgamid@gmail.com
+# name and e-mail live in ./identity, which is not in the repo
+# (see identity.example)
+[include]
+	path = identity
 
 [init]
 	defaultBranch = main

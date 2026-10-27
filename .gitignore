@@ -33,7 +33,9 @@
 !/ghostty/
 !/tmux/
 !/nvim/
+/nvim/lua/local_profile.lua
 !/git/
+/git/identity
 !/atuin/
 /atuin/*
 !/atuin/config.toml

@@ -50,6 +50,13 @@ fi
 mkdir -p "$HOME/.local/bin"
 swiftc -O "$CONFIG/aerospace/input-source.swift" -o "$HOME/.local/bin/input-source"
 
+# 6c. git name and e-mail are kept out of the repo (git/identity, not tracked)
+if [ ! -f "$CONFIG/git/identity" ]; then
+  read -rp "Git name: " git_name
+  read -rp "Git e-mail: " git_email
+  printf '[user]\n\tname = %s\n\temail = %s\n' "$git_name" "$git_email" >"$CONFIG/git/identity"
+fi
+
 # 7. zsh reads its config from ~/.config/zsh
 if [ ! -f "$HOME/.zshenv" ]; then
   echo 'export ZDOTDIR="$HOME/.config/zsh"' >"$HOME/.zshenv"

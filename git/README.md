@@ -25,10 +25,16 @@
 Ещё короче — сокращения fish (`gs`, `gcm`, `gp`…), см. [fish](../fish/).
 Визуальный клиент в терминале — `lg` (lazygit).
 
-## Поменять имя/почту
+## Имя и почта
+
+Имя и почта лежат **не в репозитории**, а в файле `identity` рядом с `config`
+(он в `.gitignore`; шаблон — `identity.example`). `install.sh` спросит их при установке.
+
+### Поменять
 
 ```sh
-git config --global user.name "Новое Имя"
-git config --global user.email "почта@example.com"
+git config -f ~/.config/git/identity user.name "Новое Имя"
+git config -f ~/.config/git/identity user.email "почта@example.com"
 ```
-Пишется прямо в этот файл.
+(или просто открыть `~/.config/git/identity`). Не через `git config --global` —
+он пишет в основной `config`, который лежит в репозитории.
