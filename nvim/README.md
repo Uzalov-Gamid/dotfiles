@@ -10,6 +10,14 @@
 
 `Space` — leader. ★ — настроено в конфиге, остальное — встроенное в Neovim.
 
+![Neovim: дерево проекта и код](../screenshots/editor.png)
+
+![Neovim: окно команд](../screenshots/command.png)
+
+![Neovim: запуск кода](../screenshots/run.png)
+
+![Neovim: YAML и Dockerfile](../screenshots/yaml.png)
+
 ## Языки
 
 | Файлы | Отступ | `Space r` запускает ★ | Что ещё |

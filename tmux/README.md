@@ -3,6 +3,10 @@
 Конфиг: [`tmux.conf`](tmux.conf), вид — [`theme.conf`](theme.conf). Всё, что помечено ★, — настроено специально,
 остальное — стандарт tmux. Плагины ставятся в `~/.tmux/plugins` (не в репо).
 
+![tmux: три панели и плашка PREFIX](../screenshots/tmux-panes.png)
+
+![tmux: плавающее окно floax](../screenshots/tmux-float.png)
+
 ## Зачем он нужен
 
 tmux держит терминальные сессии **отдельно от окна Ghostty**: закрыл окно,
