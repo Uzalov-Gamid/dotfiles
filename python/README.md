@@ -1,6 +1,6 @@
 # Python-библиотеки
 
-[`requirements.txt`](requirements.txt) — личные библиотеки, которые ставятся в
+[`requirements.txt`](requirements.txt) — дополнительные библиотеки, которые ставятся в
 Python из Homebrew (`python3` в fish — это он). Сейчас: **matplotlib** и
 **python-docx**; numpy, pillow, lxml и остальное приходят как зависимости.
 

@@ -2,164 +2,201 @@
 
 > *Houston, we have a config.*
 
-Мой macOS: тайлинговые окна, верхняя панель, терминал и редактор — всё в одной
-палитре **astronaut**: цвета взяты с обоев (оранжевый, кремовый, тёмное стекло
-шлема, олива) плюс голубое свечение активного окна.
+Конфигурация macOS-окружения для работы с кодом: тайлинговые окна, верхняя
+панель с виджетами, терминал, tmux и минималистичный Neovim. Всё выдержано в
+одной цветовой теме — **astronaut**: тёмный фон, кремовый текст, оранжевые
+акценты и голубое свечение активного окна.
 
-![Три окна плитками: редактор, lazygit и yazi, сверху бар SketchyBar](screenshots/tiling.png)
+![Три окна плитками: редактор, lazygit и yazi, сверху панель SketchyBar](screenshots/tiling.png)
 
-## Всё в картинках
+## Что внутри
 
-Все кадры сняты на демо-проекте, без личных данных. Верхняя полоса на каждом
-кадре — **SketchyBar**; плашки внутри окна сверху и снизу — **tmux** и **Neovim**.
+- **Окна** — [AeroSpace](https://github.com/nikitabobko/AeroSpace): плиточная
+  раскладка, именованные рабочие пространства, управление с клавиатуры
+  (`alt-h/j/k/l`, `alt-<буква>`); активное окно подсвечивает
+  [JankyBorders](https://github.com/FelixKratz/JankyBorders).
+- **Верхняя панель** — [SketchyBar](https://github.com/FelixKratz/SketchyBar) на Lua:
+  текущий спейс и приложения в нём, сеть, раскладка, память, процессор, громкость,
+  батарея, дата. По клику — карточка Apple Music (обложка, управление) и окошко
+  сети (скорость, адреса, VPN). Учитывает вырез экрана MacBook.
+- **Терминал** — [Ghostty](https://ghostty.org) + [fish](https://fishshell.com)
+  ([Tide](https://github.com/IlanCosman/tide), [atuin](https://atuin.sh), zoxide, fzf)
+  + [tmux](https://github.com/tmux/tmux) со своей темой: плашки с режимом, папкой и
+  git-веткой, плавающее окно.
+- **Редактор** — [Neovim](https://neovim.io) без плагинов и LSP: дерево проекта,
+  поиск, запуск кода, отдельные настройки под Python, C, Markdown, YAML,
+  Dockerfile и другие форматы, стартовый экран-профиль, режим чтения Markdown.
+- **Клавиатура и указатель** — [Karabiner-Elements](https://karabiner-elements.pqrs.org)
+  (Caps → Ctrl, стрелки на `Fn+HJKL`) и тема указателя Bibata через
+  [MaCursor](https://github.com/writronic/MaCursor).
+- **Инструменты** — git + delta, lazygit, yazi, btop, fastfetch, glow, Colima
+  (Docker без Docker Desktop).
+- **Установка одной командой** — [`Brewfile`](Brewfile) и [`install.sh`](install.sh)
+  поднимают всё на чистой системе.
 
-### Окна и рабочий стол
-
-**AeroSpace** раскладывает окна плитками с ровными зазорами, у каждого окна своя
-рамка-свечение голубого цвета. Слева в баре — текущий спейс и его приложения,
-справа — сеть, раскладка, память, процессор, громкость, батарея, дата.
-Скриншот выше: редактор, [lazygit](https://github.com/jesseduffield/lazygit) и
-[yazi](https://yazi-rs.github.io) — разные окна одной раскладки (`alt-h/j/k/l`
-переходят между ними). Подробнее — [`aerospace/`](aerospace/), [`sketchybar/`](sketchybar/).
+## Скриншоты
 
 ### tmux — панели и плавающее окно
 
-Панели с цветной рамкой у активной; сверху сессия, окна, режим (оранжевая плашка
-`PREFIX`, пока нажат префикс), папка и git-ветка.
+Активная панель обведена цветной рамкой. Сверху: сессия, окна, режим (оранжевая
+плашка `PREFIX`, пока нажат префикс), папка и git-ветка.
 
 ![tmux: три панели и плашка PREFIX](screenshots/tmux-panes.png)
 
-`prefix b` открывает плавающий терминал поверх всего (здесь — `ff`, fastfetch).
+`prefix b` открывает плавающий терминал поверх остального (на кадре — `fastfetch`).
 
-![tmux: плавающее окно floax](screenshots/tmux-float.png)
+![tmux: плавающее окно](screenshots/tmux-float.png)
 
-Подробнее и все клавиши — [`tmux/`](tmux/).
+Подробнее — [`tmux/`](tmux/).
 
-### Neovim — без плагинов и LSP
+### Neovim
 
-Дерево проекта на `Space e`, иконки по типам файлов, строка состояния в стиле tmux:
+Дерево проекта (`Space e`) с иконками по типам файлов и строка состояния в стиле tmux:
 
 ![Neovim: дерево проекта и код](screenshots/editor.png)
 
-Строка команд — отдельное окошко по центру (`:` и `/`), подстановка подсвечивается
-сразу, пока печатаешь:
+Строка команд открывается отдельным окошком по центру (`:` и `/`); подстановка
+подсвечивается во время набора:
 
 ![Neovim: окно команд](screenshots/command.png)
 
-`Space r` сохраняет и запускает файл (Python, C, bash, Dockerfile…), вывод — внизу:
+`Space r` сохраняет и запускает файл (Python, C, bash, Dockerfile…), вывод идёт снизу:
 
 ![Neovim: запуск кода](screenshots/run.png)
 
-`Space g` — поиск по всему проекту через ripgrep, результаты в списке:
+`Space g` — поиск по проекту через ripgrep, результаты в списке:
 
 ![Neovim: поиск по проекту](screenshots/search.png)
 
-YAML и Dockerfile рядом: линии уровней отступа, правильные 2 пробела:
+YAML и Dockerfile рядом, с линиями уровней отступа:
 
 ![Neovim: YAML и Dockerfile](screenshots/yaml.png)
 
-Стартовый экран — мини-профиль: активность GitHub, команды из atuin, время в
-редакторе, фаза Луны. Имя и город на кадре — демо, свои лежат в
-`nvim/lua/local_profile.lua` (не в репо):
+Стартовый экран — мини-профиль: активность GitHub, статистика команд из atuin,
+время в редакторе за неделю, фаза Луны и время восхода и заката:
 
 ![Стартовый экран Neovim](screenshots/dashboard.png)
 
-Режим чтения Markdown (`Space p`, как в Obsidian), его рисует `glow` в цветах темы:
+Режим чтения Markdown (`Space p`), рендерит [glow](https://github.com/charmbracelet/glow)
+в цветах темы:
 
 ![Режим чтения Markdown](screenshots/reading.png)
 
-Подробнее и все клавиши — [`nvim/`](nvim/).
+Подробнее — [`nvim/`](nvim/).
 
-### Чего нет на скриншотах
+## Установка
 
-Музыкальная карточка в баре (обложка и кнопки Apple Music), окошко сети (скорость,
-IP-адреса) и выпадающий терминал `alt-1` — на кадрах были бы личные данные
-(трек, адреса). Как они устроены — в [`sketchybar/`](sketchybar/) и [`ghostty/`](ghostty/).
+Требования: macOS на Apple Silicon (пути вида `/opt/homebrew` прописаны в
+конфигах), доступ в интернет, учётная запись администратора. Разрабатывалось и
+проверялось на macOS 26.
 
----
+```sh
+# если ~/.config уже существует — сначала переместить его
+mv ~/.config ~/.config.bak
 
-Этот репозиторий — **сама папка `~/.config`**. Без симлинков: программы читают
-конфиги прямо отсюда, а git следит за папкой.
+git clone https://github.com/Uzalov-Gamid/houston.git ~/.config
+~/.config/install.sh
+```
 
-- Поменял конфиг → он уже работает (после перезагрузки программы — как, написано в README её папки).
-- Сохранить изменения: `dots` (в fish: перейти сюда + git status), затем
-  `git add -A && git commit -m "..." && git push`.
-- В git попадает только то, что разрешено в [`.gitignore`](.gitignore) (белый
-  список): токены, ключи и кэши (`gh/`, ключи atuin, диск Colima…) на GitHub не уходят.
-  Новый конфиг в репо — строка `!/имя-папки/` в `.gitignore`.
+Скрипт идемпотентен — его можно запускать повторно. Он последовательно:
 
-**Тема везде одна — astronaut:** цвета с обоев (оранжевый, кремовый, тёмное
-стекло шлема, олива, стальной синий) + голубой `#7daea3` свечения окон.
+1. ставит Command Line Tools и Homebrew;
+2. устанавливает всё из `Brewfile`: приложения, утилиты и шрифты (App Store — через `mas`);
+3. ставит npm-пакеты и Python-библиотеки ([`python/requirements.txt`](python/requirements.txt));
+4. собирает Lua-модуль SbarLua для SketchyBar и небольшую утилиту переключения раскладки;
+5. спрашивает имя и почту для git (сохраняются в `git/identity`);
+6. делает fish оболочкой по умолчанию и ставит плагины fish и tmux;
+7. запускает SketchyBar и AeroSpace.
 
-## Как всё связано
+После установки:
+
+- выдать AeroSpace и Karabiner права «Универсальный доступ», когда macOS попросит;
+- открыть `cursor/BibataModernIceSmall.cursor` в MaCursor и нажать **Apply**;
+- по желанию создать `nvim/lua/local_profile.lua` по образцу
+  `local_profile.example.lua` — имя, ник и город для стартового экрана Neovim.
+
+Правила «приложение → рабочее пространство» в [`aerospace/aerospace.toml`](aerospace/aerospace.toml)
+рассчитаны на конкретный набор программ; под свой набор их нужно поправить
+(идентификатор приложения показывает `aerospace list-apps`). Ширина выреза экрана
+для панели задаётся в [`sketchybar/settings.lua`](sketchybar/settings.lua) (`ui.notch_width`).
+
+## Как устроен репозиторий
+
+Репозиторий — это сама папка `~/.config`: программы читают конфиги прямо из неё,
+ни симлинков, ни копирования нет.
+
+- Изменения применяются сразу после перезапуска соответствующей программы;
+  как именно — написано в README папки.
+- В git попадает только то, что явно разрешено в [`.gitignore`](.gitignore)
+  (белый список): токены, ключи, кэши и состояние приложений остаются локальными.
+  Чтобы добавить новый конфиг, нужна строка `!/имя-папки/`.
+- Локальные файлы, которых в репозитории нет: `git/identity` (имя и почта для
+  коммитов, шаблон — `identity.example`) и `nvim/lua/local_profile.lua`
+  (профиль для стартового экрана).
 
 ```
 вход в систему
- ├─ AeroSpace ─────────── окна и спейсы, хоткеи alt-…
- │    ├─ запускает borders ─ голубое свечение вокруг активного окна
- │    └─ шлёт события ─────► SketchyBar — верхний бар с виджетами
- ├─ Karabiner-Elements ── Caps → Ctrl, Fn+HJKL → стрелки
- ├─ MaCursor ──────────── указатель Bibata
- └─ Raycast, Handy ────── (настраиваются в своих приложениях)
+ ├─ AeroSpace ─────────── окна и рабочие пространства
+ │    ├─ запускает borders ─ свечение вокруг активного окна
+ │    └─ шлёт события ─────► SketchyBar — верхняя панель
+ ├─ Karabiner-Elements ── переназначение клавиш
+ └─ MaCursor ──────────── тема указателя
 
 терминал
  Ghostty ─► fish (Tide, atuin, zoxide) ─► tmux ─► Neovim
 ```
 
-## Папки — у каждой свой README «как пользоваться»
+## Тема astronaut
 
-| Папка | Что это |
+Единая палитра для Ghostty, tmux, Neovim, glow и панели:
+
+| Роль | Цвет |
 |---|---|
-| [`aerospace/`](aerospace/) | Тайлинговый менеджер окон: спейсы `main`, `term`, `Cal&Rem`…, хоткеи `alt-…` |
+| Фон | `#1c1513` |
+| Текст | `#e3dccb` |
+| Акцент, «активное» | `#7daea3` (голубой) |
+| Второй акцент | `#ef8f4c` (оранжевый) |
+| Жёлтый / олива / сталь | `#e5c15a` / `#b5b07a` / `#8aa1b8` |
+| Красный / песочный | `#e0603a` / `#d0a07e` |
+
+Голубой отмечает всё активное: рамку окна, текущий спейс, режим NORMAL, сессию
+tmux. Оранжевый используется точечно — числа, константы, предупреждения.
+
+## Папки
+
+У каждой папки есть свой README: клавиши, команды, как менять.
+
+| Папка | Содержимое |
+|---|---|
+| [`aerospace/`](aerospace/) | Менеджер окон: рабочие пространства, горячие клавиши, правила для приложений |
 | [`borders/`](borders/) | Свечение вокруг активного окна |
-| [`sketchybar/`](sketchybar/) | Верхний бар: спейсы, музыка, сеть, RAM, CPU, батарея, попапы |
+| [`sketchybar/`](sketchybar/) | Верхняя панель: виджеты, попапы, общий стиль «капсул» |
 | [`karabiner/`](karabiner/) | Переназначение клавиш |
-| [`cursor/`](cursor/) | Указатель мыши (MaCursor + Bibata) |
-| [`ghostty/`](ghostty/) | Терминал: тема astronaut, SF Mono Bold, quick terminal |
-| [`fish/`](fish/) | Основная оболочка: сокращения, School 21 docker, `rm` в Корзину |
-| [`tmux/`](tmux/) | **Как пользоваться моим tmux**: сессии, окна, панели, плавающее окно |
-| [`nvim/`](nvim/) | Neovim без плагинов и LSP: Python, C, Markdown, YAML/DevOps |
-| [`git/`](git/) | git + delta, алиасы |
-| [`atuin/`](atuin/) | История команд (`Ctrl-R`) |
-| [`zsh/`](zsh/) | Запасная оболочка + Starship ([`starship.toml`](starship.toml)) |
+| [`cursor/`](cursor/) | Тема указателя мыши и скрипт изменения её размера |
+| [`ghostty/`](ghostty/) | Терминал: тема, шрифт, выпадающий терминал |
+| [`fish/`](fish/) | Оболочка: сокращения, функции, `rm` в Корзину |
+| [`tmux/`](tmux/) | tmux: тема, клавиши, плагины, шпаргалка |
+| [`nvim/`](nvim/) | Neovim: настройки, дерево проекта, стартовый экран, шпаргалка |
+| [`git/`](git/) | Настройки git, delta, алиасы |
+| [`atuin/`](atuin/) | История команд с поиском (`Ctrl-R`) |
+| [`zsh/`](zsh/) | Запасная оболочка и промпт Starship ([`starship.toml`](starship.toml)) |
 | [`btop/`](btop/) | Монитор процессов |
-| [`fastfetch/`](fastfetch/) | Информация о системе (`ff`) |
-| [`glow/`](glow/) | Режим чтения Markdown (`Space p` в Neovim, `md` в терминале) |
+| [`fastfetch/`](fastfetch/) | Сводка о системе |
+| [`glow/`](glow/) | Стиль для чтения Markdown в терминале |
 | [`colima/`](colima/) | Docker без Docker Desktop |
-| [`python/`](python/) | Личные Python-библиотеки |
+| [`python/`](python/) | Список Python-библиотек |
 
-Файлы в корне: [`Brewfile`](Brewfile) — все программы, [`install.sh`](install.sh) —
-установка на новый Mac, [`.editorconfig`](.editorconfig) — отступы по папкам
-(Lua в `sketchybar/` — табы, в `nvim/` — 2 пробела).
+В корне: [`Brewfile`](Brewfile) — все программы и шрифты,
+[`install.sh`](install.sh) — установка на новую систему,
+[`.editorconfig`](.editorconfig) — отступы по папкам репозитория.
 
-## Установка на новый Mac
-
-```sh
-git clone https://github.com/Uzalov-Gamid/houston.git ~/.config
-~/.config/install.sh
-```
-
-Скрипт: Command Line Tools → Homebrew → `brew bundle` (всё из Brewfile, включая
-App Store через `mas`) → npm-утилиты → Python-библиотеки → SbarLua → `~/.zshenv`
-→ fish как оболочка входа + плагины → плагины tmux → запуск SketchyBar и
-AeroSpace. Можно запускать повторно. После — дать AeroSpace и Karabiner доступ
-к «Универсальному доступу», открыть `cursor/BibataModernIceSmall.cursor` → Apply.
-Вручную: Jazz (SberJazz) и My Words — их нет ни в brew, ни в App Store.
-
-## Держать систему в порядке
+## Обслуживание
 
 | Команда | Что делает |
 |---|---|
-| `brew bundle --file=~/.config/Brewfile` | Доставить недостающее |
-| `brew bundle check --file=~/.config/Brewfile --verbose` | Чего не хватает |
-| `brew bundle cleanup --file=~/.config/Brewfile` | Что стоит, но **нет** в Brewfile (`--force` — удалить) |
+| `brew bundle --file=~/.config/Brewfile` | Доустановить недостающее |
+| `brew bundle check --file=~/.config/Brewfile --verbose` | Показать, чего не хватает |
+| `brew bundle cleanup --file=~/.config/Brewfile` | Показать установленное, но не описанное в `Brewfile` (`--force` — удалить) |
 | `brew update && brew upgrade` | Обновить всё |
 
-Поставил что-то новое и хочешь оставить — допиши строку в `Brewfile` и закоммить.
-
-## История
-
-- Раньше параллельно с AeroSpace стоял yabai (+ skhd) — он ничего не делал
-  (прозрачности окон нужен выключенный SIP) и удалён; конфиги — в коммите `e05d57e`.
-- Предыдущий вариант репо (zsh + Starship + свой Neovim) — тег `legacy-zsh-rig`:
-  `git checkout legacy-zsh-rig` посмотреть, `git checkout main` вернуться.
+Новая программа, которую нужно сохранить в окружении, добавляется строкой в `Brewfile`.
