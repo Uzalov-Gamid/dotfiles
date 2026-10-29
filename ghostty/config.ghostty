@@ -63,15 +63,9 @@ macos-icon-frame = plastic
 macos-window-buttons = hidden
 macos-titlebar-style = hidden
 
-keybind = global:cmd+f20=toggle_quick_terminal
-quick-terminal-position = center
 
 # custom-shader = shaders/cursor_warp.glsl
 # custom-shader = shaders/cursor_tail.glsl
 # custom-shader = shaders/bettercrt.glsl
 # custom-shader = shaders/bloom.glsl
 
-# mini terminal: Ctrl+` (the tilde key); Option+1..5 belong to AeroSpace
-keybind = global:ctrl+grave_accent=toggle_quick_terminal
-quick-terminal-position = center
-quick-terminal-size = 40%, 45%
