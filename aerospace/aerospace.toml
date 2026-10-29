@@ -66,10 +66,12 @@ preset = 'qwerty'
 [gaps]
 inner.horizontal = 10
 inner.vertical = 10
-# The top bar (SketchyBar, 33pt) sits where the macOS menu bar would be. A
-# MacBook's built-in display already keeps that strip free (the notch area);
-# an external monitor does not, so windows must leave room for the bar there.
-outer.top = [{ monitor."built-in" = 10 }, 43]
+# The top bar (SketchyBar, 33pt) lives on the MAIN display, where the macOS menu
+# bar would be. The first matching rule wins:
+#  - the MacBook screen: its notch area is already kept free      -> 10
+#  - an external monitor that is the main display: no notch, bar  -> 43 (33 + 10)
+#  - any other (second) monitor: no bar there                     -> 10
+outer.top = [{ monitor."built-in" = 10 }, { monitor.main = 43 }, 10]
 outer.left = 10
 outer.right = 10
 outer.bottom = 10
