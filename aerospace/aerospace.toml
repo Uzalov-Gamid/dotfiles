@@ -50,6 +50,12 @@ persistent-workspaces = [
   "vpn",
   "Cal&Rem",
   "term",
+  # second-monitor workspaces (see [workspace-to-monitor-force-assignment])
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
 ]
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -66,15 +72,22 @@ preset = 'qwerty'
 [gaps]
 inner.horizontal = 10
 inner.vertical = 10
-# The top bar (SketchyBar, 33pt) lives on the MAIN display, where the macOS menu
-# bar would be. The first matching rule wins:
-#  - the MacBook screen: its notch area is already kept free      -> 10
-#  - an external monitor that is the main display: no notch, bar  -> 43 (33 + 10)
-#  - any other (second) monitor: no bar there                     -> 10
-outer.top = [{ monitor."built-in" = 10 }, { monitor.main = 43 }, 10]
+# The top bar (SketchyBar, 33pt) is drawn on every display, where the macOS menu
+# bar would be. The MacBook screen already keeps that strip free (the notch area),
+# every other monitor needs the bar height + the usual gap.
+outer.top = [{ monitor."built-in" = 10 }, 43]
 outer.left = 10
 outer.right = 10
 outer.bottom = 10
+
+# Workspaces 1-5 live on the second monitor (any display that is not the main one).
+# With a single screen they simply open on that screen.
+[workspace-to-monitor-force-assignment]
+1 = 'secondary'
+2 = 'secondary'
+3 = 'secondary'
+4 = 'secondary'
+5 = 'secondary'
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.main.binding]
@@ -131,6 +144,19 @@ alt-shift-t = 'move-node-to-workspace chat'
 alt-shift-v = 'move-node-to-workspace vpn'
 alt-shift-r = 'move-node-to-workspace "Cal&Rem"'
 alt-shift-g = 'move-node-to-workspace term'
+
+# Second monitor: Option+1..5 go to workspace 1..5,
+# Shift+Option+1..5 send the focused window there (same scheme as the letters above).
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
