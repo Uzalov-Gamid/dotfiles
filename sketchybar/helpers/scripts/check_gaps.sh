@@ -3,14 +3,23 @@
 # between neighbours is the same everywhere (and not under the notch).
 # Run after changing widgets:  ~/.config/sketchybar/helpers/scripts/check_gaps.sh
 #
+# The left group and the right group are checked separately: the space between
+# them (the notch, or free space on a monitor without one) can be any size.
+#
 # A "capsule" is any visible item or bracket that draws a background,
 # except items that sit inside a bracket (the bracket is the capsule) and
 # items inside popups.
 
 GAP=7         # settings.paddings.container_paddings
 EDGE=9        # settings.paddings.edge_padding
-NOTCH_L=646   # MacBook Air 15" notch, in points
-NOTCH_R=825
+# Notch of the main display, in points, read from macOS (-1 if there is none,
+# e.g. on an external monitor), plus the screen width.
+read -r NOTCH_L NOTCH_R SCREEN_W < <(swift -e '
+import AppKit
+let s = NSScreen.main!
+let l = s.auxiliaryTopLeftArea?.width ?? 0, r = s.auxiliaryTopRightArea?.width ?? 0, w = s.frame.width
+if l > 0 && r > 0 { print(Int(l), Int(w - r), Int(w)) } else { print(-1, -1, Int(w)) }
+' 2>/dev/null || echo "-1 -1 1470")
 
 items=$(sketchybar --query bar | jq -r '.items[]')
 
@@ -30,14 +39,15 @@ rects=$(for i in $items; do
     | "\(.origin[0]) \(.size[0]) \($i)"'
 done | sort -n)
 
-screen_w=$(swift -e 'import AppKit; print(Int(NSScreen.main!.frame.width))' 2>/dev/null || echo 1470)
+screen_w=$SCREEN_W
 
 echo "$rects" | awk -v gap=$GAP -v edge=$EDGE -v nl=$NOTCH_L -v nr=$NOTCH_R -v w="$screen_w" '
   { x = $1; end = $1 + $2; name = $3 }
   NR == 1 { if (x != edge) { printf "✗ left edge %.0f (want %d)\n", x, edge; bad = 1 } }
   NR > 1 {
     g = x - prev_end
-    across_notch = (prev_end <= nl && x >= nr)
+    # the gap between the left and the right group (notch or just free space) is not checked
+    across_notch = (prev_end <= nl && x >= nr) || (prev_end <= w / 2 && x >= w / 2)
     if (!across_notch && g != gap) { printf "✗ %-28s → %-28s gap %.0f (want %d)\n", prev, name, g, gap; bad = 1 }
   }
   { if (x < nr && end > nl) { printf "✗ %s overlaps the notch (%.0f–%.0f)\n", name, x, end; bad = 1 }

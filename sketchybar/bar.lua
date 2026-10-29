@@ -13,6 +13,8 @@ sbar.bar({
 	y_offset = settings.ui.background.y_offset,
 	corner_radius = settings.ui.background.corner_radius,
 	notch_width = settings.ui.notch_width,
-	display = 1,
+	-- the main display: the MacBook screen, or an external monitor when it is the
+	-- only / primary one (display = 1 pinned the bar to the first screen)
+	display = "main",
 	position = "top",
 })

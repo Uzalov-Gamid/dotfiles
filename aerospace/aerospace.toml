@@ -66,7 +66,10 @@ preset = 'qwerty'
 [gaps]
 inner.horizontal = 10
 inner.vertical = 10
-outer.top = 10
+# The top bar (SketchyBar, 33pt) sits where the macOS menu bar would be. A
+# MacBook's built-in display already keeps that strip free (the notch area);
+# an external monitor does not, so windows must leave room for the bar there.
+outer.top = [{ monitor."built-in" = 10 }, 43]
 outer.left = 10
 outer.right = 10
 outer.bottom = 10
