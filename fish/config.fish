@@ -22,17 +22,37 @@ set -gx fifc_custom_fzf_opts --preview-window=right:66%
 set -gx fifc_folders_preview_cmd 'lsd -1 --icon always --color always --group-dirs first {}'
 
 # Folder list with icons (like `ls`), regular folders first, hidden ones at the bottom.
-# Entries look like "<icon> name/"; the icon is cut off again on selection (-e).
-# Applies to bare `cd <Tab>`; typed paths (a/b/<Tab>) use the default list.
+# Entries look like "<icon> <typed path>name/"; the icon is cut off again on selection (-e).
 function _dirs_with_icons
-    lsd -A1F --icon always --color never --group-dirs first 2>/dev/null | grep '/$' \
-        | awk '{ print (($2 ~ /^\./) ? 1 : 0) "\t" $0 }' | sort -s -t (printf '\t') -k1,1 | cut -f2- \
+    set -l typed (string unescape -- "$fifc_token")
+    set -l prefix ""
+    set -l dir .
+    if string match -q '*/*' -- $typed
+        set prefix (string replace -r '[^/]*$' '' -- $typed)
+        set dir (string replace -r '^~' $HOME -- $prefix)
+    end
+    lsd -A1F --icon always --color never --group-dirs first -- $dir 2>/dev/null | grep '/$' \
+        | awk -v p="$prefix" '{ i = $1; n = substr($0, length(i) + 2); print ((n ~ /^\./) ? 1 : 0) "\t" i " " p n }' \
+        | sort -s -t (printf '\t') -k1,1 | cut -f2- \
         | awk '{ printf "\033[1;34m%s\033[0m\n", $0 }'
 end
-fifc -O 1 -n 'test "$fifc_group" = directories; and not string match -q "*/*" -- "$fifc_token"' \
+fifc -O 1 -n 'test "$fifc_group" = directories' \
     -s '_dirs_with_icons | cat' \
     -e '^\S+ (.+)$' \
-    -p 'lsd -1 --icon always --color always --group-dirs first -- "$fifc_extracted" 2>/dev/null'
+    -p 'lsd -1 --icon always --color always --group-dirs first -- (string replace -r "^~" $HOME -- "$fifc_extracted") 2>/dev/null'
+
+# After a folder is picked, the popup opens again inside it (Esc stops and keeps the path).
+function _fifc_browse
+    while true
+        set -l before (commandline --current-token)
+        _fifc
+        set -l after (commandline --current-token)
+        test "$after" != "$before"; and string match -q '*/' -- $after; or break
+    end
+end
+for mode in default insert
+    bind --mode $mode \t _fifc_browse
+end
 
 source "$HOME/.atuin/bin/env.fish" 2>/dev/null; or true
 atuin init fish | source
