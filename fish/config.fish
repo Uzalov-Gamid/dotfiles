@@ -8,9 +8,13 @@ if status is-interactive
     fish_vi_key_bindings
 end
 
-zoxide init fish | source
+# smart cd: `cd name` jumps to the best match from history, `cdi` opens an fzf picker
+zoxide init --cmd cd fish | source
 
 fzf --fish | source
+
+# fzf popup on Tab (fifc plugin, listed in fish_plugins); folders preview with lsd
+set -gx fifc_folders_preview_cmd 'lsd --group-dirs first --color always -1 {}'
 
 source "$HOME/.atuin/bin/env.fish" 2>/dev/null; or true
 atuin init fish | source
