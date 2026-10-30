@@ -41,19 +41,6 @@ fifc -O 1 -n 'test "$fifc_group" = directories' \
     -e '^\S+ (.+)$' \
     -p 'lsd -1 --icon always --color always --group-dirs first -- (string replace -r "^~" $HOME -- "$fifc_extracted") 2>/dev/null'
 
-# After a folder is picked, the popup opens again inside it (Esc stops and keeps the path).
-function _fifc_browse
-    while true
-        set -l before (commandline --current-token)
-        _fifc
-        set -l after (commandline --current-token)
-        test "$after" != "$before"; and string match -q '*/' -- $after; or break
-    end
-end
-for mode in default insert
-    bind --mode $mode \t _fifc_browse
-end
-
 source "$HOME/.atuin/bin/env.fish" 2>/dev/null; or true
 atuin init fish | source
 
