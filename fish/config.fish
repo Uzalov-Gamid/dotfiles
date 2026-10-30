@@ -17,7 +17,22 @@ fzf --fish | source
 # list only the current directory, not everything below it
 set -gx fifc_fd_opts --max-depth 1 --hidden
 set -gx fifc_find_opts -maxdepth 1
+# preview takes two thirds of the popup
+set -gx fifc_custom_fzf_opts --preview-window=right:66%
 set -gx fifc_folders_preview_cmd 'lsd -1 --icon always --color always --group-dirs first {}'
+
+# Folder list with icons (like `ls`), regular folders first, hidden ones at the bottom.
+# Entries look like "<icon> name/"; the icon is cut off again on selection (-e).
+# Applies to bare `cd <Tab>`; typed paths (a/b/<Tab>) use the default list.
+function _dirs_with_icons
+    lsd -A1F --icon always --color never --group-dirs first 2>/dev/null | grep '/$' \
+        | awk '{ print (($2 ~ /^\./) ? 1 : 0) "\t" $0 }' | sort -s -t (printf '\t') -k1,1 | cut -f2- \
+        | awk '{ printf "\033[1;34m%s\033[0m\n", $0 }'
+end
+fifc -n 'test "$fifc_group" = directories; and not string match -q "*/*" -- "$fifc_token"' \
+    -s _dirs_with_icons \
+    -e '^\S+ (.+)$' \
+    -p 'lsd -1 --icon always --color always --group-dirs first -- "$fifc_extracted" 2>/dev/null'
 
 source "$HOME/.atuin/bin/env.fish" 2>/dev/null; or true
 atuin init fish | source
