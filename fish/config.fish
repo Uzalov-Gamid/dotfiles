@@ -15,7 +15,7 @@ fzf --fish | source
 
 # fzf popup on Tab (fifc plugin, listed in fish_plugins); folders preview with lsd
 # list only the current directory, not everything below it
-set -gx fifc_fd_opts --max-depth 1
+set -gx fifc_fd_opts --max-depth 1 --hidden
 set -gx fifc_find_opts -maxdepth 1
 set -gx fifc_folders_preview_cmd 'lsd -1 --icon always --color always --group-dirs first {}'
 
