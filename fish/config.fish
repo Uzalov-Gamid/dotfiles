@@ -31,15 +31,30 @@ function _dirs_with_icons
         set prefix (string replace -r '[^/]*$' '' -- $typed)
         set dir (string replace -r '^~' $HOME -- $prefix)
     end
-    lsd -A1F --icon always --color never --group-dirs first -- $dir 2>/dev/null | grep '/$' \
-        | awk -v p="$prefix" '{ i = $1; n = substr($0, length(i) + 2); print ((n ~ /^\./) ? 1 : 0) "\t" i " " p n }' \
-        | sort -s -t (printf '\t') -k1,1 | cut -f2- \
-        | awk '{ printf "\033[1;34m%s\033[0m\n", $0 }'
+    set -l shown
+    set -l hidden
+    for line in (lsd -A1F --icon always --color never --group-dirs first -- $dir 2>/dev/null | string match -r '.*/$')
+        set -l parts (string match -r '^(\S+) (.+)$' -- $line)
+        or continue
+        set -l full "$prefix$parts[3]"
+        # the entry is inserted into the command line as is, so spaces etc. are escaped here
+        if string match -q '~*' -- $full
+            set full "~"(string sub -s 2 -- $full | string escape --no-quoted)
+        else
+            set full (string escape --no-quoted -- $full)
+        end
+        if string match -q '.*' -- $parts[3]
+            set -a hidden "$parts[2] $full"
+        else
+            set -a shown "$parts[2] $full"
+        end
+    end
+    printf '\033[1;34m%s\033[0m\n' $shown $hidden
 end
 fifc -O 1 -n 'test "$fifc_group" = directories' \
     -s '_dirs_with_icons | cat' \
     -e '^\S+ (.+)$' \
-    -p 'lsd -1 --icon always --color always --group-dirs first -- (string replace -r "^~" $HOME -- "$fifc_extracted") 2>/dev/null'
+    -p 'lsd -1 --icon always --color always --group-dirs first -- (string replace -r "^~" $HOME -- (string unescape -- "$fifc_extracted")) 2>/dev/null'
 
 source "$HOME/.atuin/bin/env.fish" 2>/dev/null; or true
 atuin init fish | source
