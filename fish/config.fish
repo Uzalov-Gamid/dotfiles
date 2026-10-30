@@ -17,7 +17,7 @@ fzf --fish | source
 # list only the current directory, not everything below it
 set -gx fifc_fd_opts --max-depth 1
 set -gx fifc_find_opts -maxdepth 1
-set -gx fifc_folders_preview_cmd 'lsd --group-dirs first --color always -1 {}'
+set -gx fifc_folders_preview_cmd 'lsd -1 --icon always --color always --group-dirs first {}'
 
 source "$HOME/.atuin/bin/env.fish" 2>/dev/null; or true
 atuin init fish | source
