@@ -81,7 +81,6 @@ end
 
 alias ff "fastfetch --config ~/.config/fastfetch/apple.jsonc"
 abbr -a c clear
-alias cd z
 # rm moves files to the macOS Trash (/usr/bin/trash) instead of deleting
 # them for good. rm-style flags (-r, -f, -rf, ...) are accepted and
 # dropped, since Trash handles folders anyway. Real rm: `command rm`.
