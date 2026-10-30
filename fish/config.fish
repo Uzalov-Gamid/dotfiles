@@ -29,8 +29,8 @@ function _dirs_with_icons
         | awk '{ print (($2 ~ /^\./) ? 1 : 0) "\t" $0 }' | sort -s -t (printf '\t') -k1,1 | cut -f2- \
         | awk '{ printf "\033[1;34m%s\033[0m\n", $0 }'
 end
-fifc -n 'test "$fifc_group" = directories; and not string match -q "*/*" -- "$fifc_token"' \
-    -s _dirs_with_icons \
+fifc -O 1 -n 'test "$fifc_group" = directories; and not string match -q "*/*" -- "$fifc_token"' \
+    -s '_dirs_with_icons | cat' \
     -e '^\S+ (.+)$' \
     -p 'lsd -1 --icon always --color always --group-dirs first -- "$fifc_extracted" 2>/dev/null'
 
